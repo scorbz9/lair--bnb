@@ -47,16 +47,26 @@
 }
 
 .profile-dropdown button {
-    margin-top: 10px;
     background-color: transparent;
     border: none;
     padding: 0px;
     font-size: 12px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+    margin-top: 10px;
 }
 
-.profile-dropdown button:hover {
+.profile-dropdown #host-button {
+    text-decoration: none;
+    margin-top: 4px;
+    color: black;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.profile-dropdown button:hover,
+.profile-dropdown #host-button:hover {
     color: #88404d;
     text-decoration: underline;
     cursor: pointer;
