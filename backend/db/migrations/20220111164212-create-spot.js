@@ -22,6 +22,10 @@ module.exports = {
         type: Sequelize.STRING(100),
         unique: true,
       },
+      pricePerNight: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
