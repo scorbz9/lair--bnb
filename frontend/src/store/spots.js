@@ -1,11 +1,11 @@
 import { csrfFetch } from './csrf';
 
-const LOAD = 'spots/LOAD';
+const ADD_ONE = 'spots/ADD_ONE';
 
-const load = spots => ({
-    type: LOAD,
-    spots,
-});
+// const load = spots => ({
+//     type: LOAD,
+//     spots,
+// });
 
 const addOneSpot = spot => ({
     type: ADD_ONE,
@@ -43,6 +43,8 @@ const spotReducer = (state = {}, action) => {
                 }
             }
         }
+        default:
+            return state;
     }
 }
 
