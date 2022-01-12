@@ -90,7 +90,11 @@ router.post(
             kitchen
         });
 
-        return res.json({ spotId: newSpot.id, imgURL, ...req.body })
+        const newSpotInfo = await Spot.findByPk(newSpot.id, {
+            include: [Image, Amenity]
+        })
+
+        return res.json(newSpotInfo)
     })
 );
 

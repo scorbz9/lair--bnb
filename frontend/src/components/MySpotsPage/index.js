@@ -36,9 +36,10 @@ function MySpotsPage() {
                     <tr>
                         <td>
                             {spots.map((spot) => {
+                                // console.log(spot.Images)
                                 return (
-                                    <Link key={`${spot.id}`} to={`/spots/${spot.id}`}>
-                                        <div>Hi</div>
+                                    <Link className="spot-container" key={`${spot.id}`} to={`/spots/${spot.id}`}>
+                                        <img src={`${spot.Images[0].imgURL}`}></img>
                                     </Link>
                                     )
                                 })
