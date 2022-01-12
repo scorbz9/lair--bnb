@@ -59,12 +59,12 @@ router.post(
             });
         }
 
-        const newImage = await Image.create({
+        await Image.create({
             spotId: newSpot.id,
             imgURL
         });
 
-        const newAmenity = await Amenity.create({
+        await Amenity.create({
             spotId: newSpot.id,
             hairDryer,
             hotWater,
@@ -79,8 +79,18 @@ router.post(
             kitchen
         });
 
-        return res.json(newSpot)
+        return res.json({ spotId: newSpot.id, imgURL, ...req.body })
     })
 );
 
+router.get(
+    '/',
+    asyncHandler(async (req, res, next) => {
+        const spots = await Spot.findAll({
+            include: [Image, Amenity]
+        })
+
+        res.json(spots)
+    })
+);
 module.exports = router;
