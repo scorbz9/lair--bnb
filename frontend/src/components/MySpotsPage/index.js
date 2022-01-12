@@ -9,9 +9,18 @@ import './MySpotsPage.css';
 function MySpotsPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
+
     useEffect(() => {
         dispatch(getSpots(sessionUser.id))
     }, [dispatch])
+
+    const spots = useSelector(state => {
+        return state.spots.list.map(spot => state.spots[spot.id])
+    });
+
+    console.log(spots)
+
+    if (!spots) return null;
 
     return (
         <div id="my-spots-container">
@@ -19,17 +28,24 @@ function MySpotsPage() {
             <table>
                 <thead>
                     <tr>
-                    <th id="spot-list-head">
-                    </th>
+                        <th id="spot-list-head">
+                        </th>
                     </tr>
                 </thead>
-                {/* {spots.map((spot) => {
-                    return (
-                        <Link>
-                        <div to={`/spots/${spot.id}`}>Hi</div>
-                        </Link>
-                    )}
-                )} */}
+                <tbody>
+                    <tr>
+                        <td>
+                            {spots.map((spot) => {
+                                return (
+                                    <Link key={`${spot.id}`} to={`/spots/${spot.id}`}>
+                                        <div>Hi</div>
+                                    </Link>
+                                    )
+                                })
+                            }
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     )

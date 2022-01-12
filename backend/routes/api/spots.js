@@ -17,7 +17,18 @@ const imgURLs = [
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
-  }
+}
+
+router.get(
+    '/',
+    asyncHandler(async (req, res, next) => {
+        const spots = await Spot.findAll({
+            include: [Image, Amenity]
+        })
+
+        res.json(spots)
+    })
+);
 
 router.post(
     '/',
@@ -83,14 +94,4 @@ router.post(
     })
 );
 
-router.get(
-    '/',
-    asyncHandler(async (req, res, next) => {
-        const spots = await Spot.findAll({
-            include: [Image, Amenity]
-        })
-
-        res.json(spots)
-    })
-);
 module.exports = router;

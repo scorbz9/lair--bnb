@@ -3,9 +3,9 @@ import { csrfFetch } from './csrf';
 const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE';
 
-const load = (spots) => ({
+const load = (list) => ({
     type: LOAD,
-    spots,
+    list,
 });
 
 const addOneSpot = spot => ({
@@ -17,8 +17,6 @@ export const getSpots = (userId) => async dispatch => {
     const response = await csrfFetch(`/api/users/${userId}/spots`)
     const spots = await response.json();
 
-    console.log(spots)
-
     dispatch(load(spots))
 }
 
@@ -29,31 +27,40 @@ export const createSpot = (payload) => async dispatch => {
         body: JSON.stringify(payload)
     });
     const spot = await response.json();
-
+    console.log(spot)
     dispatch(addOneSpot(spot))
     return spot;
 }
 
-const spotReducer = (state = {}, action) => {
+const initialState = {
+    list: [],
+}
+
+const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
+            const allSpots = {};
+            action.list.forEach(spot => {
+                allSpots[spot.id] = spot;
+            });
             return {
+                ...allSpots,
                 ...state,
-                ...action.spots
+                list: action.list
             };
         }
         case ADD_ONE: {
-            if (!state[action.spot.id]) {
+            if (!state[action.spot.spotId]) {
                 const newState = {
                     ...state,
-                    [action.spot.id]: action.spot
+                    [action.spot.spotId]: action.spot
                 };
                 return newState;
             }
             return {
                 ...state,
-                [action.spot.id]: {
-                    ...state[action.spot.id],
+                [action.spot.spotId]: {
+                    ...state[action.spot.spotId],
                     ...action.spot,
                 }
             }
