@@ -13,7 +13,8 @@ const addOneSpot = spot => ({
 })
 
 export const createSpot = (payload) => async dispatch => {
-    const response = await csrfFetch('/spots', {
+
+    const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

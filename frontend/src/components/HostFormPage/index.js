@@ -11,7 +11,7 @@ function HostFormPage() {
   const history = useHistory();
   const [address, setAddress] = useState('');
   const [description, setDescription] = useState('');
-  const [imageURL, setImageURL] = useState('')
+  const [pricePerNight, setPricePerNight] = useState(0);
   const [hairDryer, setHairDryer] = useState(false);
   const [hotWater, setHotWater] = useState(false);
   const [hangers, setHangers] = useState(false);
@@ -34,9 +34,10 @@ function HostFormPage() {
     setErrors([]);
 
     const spot = {
+      userId: sessionUser.id,
       address,
       description,
-      imageURL,
+      pricePerNight: parseInt(pricePerNight, 10),
       hairDryer,
       hotWater,
       hangers,
@@ -50,7 +51,7 @@ function HostFormPage() {
       kitchen
     }
 
-    console.log(spot)
+    // console.log(spot)
 
     let newSpot = await dispatch(createSpot(spot))
 
@@ -84,11 +85,11 @@ function HostFormPage() {
         />
       </label>
       <label>
-        Image URL
+        Price Per Night
         <input
           type="text"
-          value={imageURL}
-          onChange={(e) => setImageURL(e.target.value)}
+          value={pricePerNight}
+          onChange={(e) => setPricePerNight(e.target.value)}
           required
         />
       </label>

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     pricePerNight: {
       allowNull: false,
-      type: DataTypes.INTEGER(3),
+      type: DataTypes.INTEGER,
     }
   }, {});
   Spot.associate = function(models) {
