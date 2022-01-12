@@ -53,13 +53,13 @@ const spotReducer = (state = initialState, action) => {
             if (!state[action.spot.spotId]) {
                 const newState = {
                     ...state,
-                    [action.spot.spotId]: action.spot
+                    [action.spot.id]: action.spot
                 };
                 return newState;
             }
             return {
                 ...state,
-                [action.spot.spotId]: {
+                [action.spot.id]: {
                     ...state[action.spot.spotId],
                     ...action.spot,
                 }
