@@ -1,12 +1,15 @@
 #navbar {
     list-style-type: none;
+    height: 60px;
+    border-bottom: 1.25px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
     padding: 0px;
 }
 
 .navlink {
     text-decoration: none;
     padding: 8px 12px;
-    margin: 0px 3px;
+    margin: 0px 5px;
     display: inline-block;
     font-family: Verdana, Geneva, Tahoma;
     font-size: 15px;
