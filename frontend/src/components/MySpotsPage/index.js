@@ -8,9 +8,9 @@ import './MySpotsPage.css';
 
 function MySpotsPage() {
     const dispatch = useDispatch();
-
+    const sessionUser = useSelector(state => state.session.user);
     useEffect(() => {
-        dispatch(getSpots())
+        dispatch(getSpots(sessionUser.id))
     }, [dispatch])
 
     return (

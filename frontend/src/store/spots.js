@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf';
 const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE';
 
-const load = spots => ({
+const load = (spots) => ({
     type: LOAD,
     spots,
 });
@@ -13,10 +13,11 @@ const addOneSpot = spot => ({
     spot
 })
 
-export const getSpots = () => async dispatch => {
-    const response = await csrfFetch('/api/spots')
+export const getSpots = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/users/${userId}/spots`)
     const spots = await response.json();
 
+    console.log(spots)
 
     dispatch(load(spots))
 }
@@ -36,7 +37,10 @@ export const createSpot = (payload) => async dispatch => {
 const spotReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD: {
-
+            return {
+                ...state,
+                ...action.spots
+            };
         }
         case ADD_ONE: {
             if (!state[action.spot.id]) {
@@ -44,10 +48,8 @@ const spotReducer = (state = {}, action) => {
                     ...state,
                     [action.spot.id]: action.spot
                 };
-                console.log(newState)
                 return newState;
             }
-            console.log(state)
             return {
                 ...state,
                 [action.spot.id]: {
