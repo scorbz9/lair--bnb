@@ -51,10 +51,8 @@ function HostFormPage() {
       kitchen
     }
 
-    // console.log(spot)
-
     let newSpot = await dispatch(createSpot(spot))
-
+    console.log(newSpot)
     if (newSpot) {
       history.push(`/spots/${newSpot.id}`)
     }

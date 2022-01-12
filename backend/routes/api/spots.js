@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Spot, Image, Amenity } = require('../../db/models');
+const { User, Spot, Image, Amenity } = require('../../db/models');
 
 const router = express.Router();
 
@@ -40,9 +40,10 @@ router.post(
             kitchen
         } = req.body;
 
-        const randomIndex = Math.floor(getRandomArbitrary(0, imgURLs.length));
+        const user = await User.findByPk(userId)
 
         // Gets random spooky house picture url from list
+        const randomIndex = Math.floor(getRandomArbitrary(0, imgURLs.length));
         const imgURL = imgURLs[randomIndex];
 
         const newSpot = await Spot.create({
@@ -52,13 +53,18 @@ router.post(
             pricePerNight,
         });
 
-        await Image.create({
+        if (user.host === false) {
+            await user.update({
+                host: true
+            });
+        }
+
+        const newImage = await Image.create({
             spotId: newSpot.id,
             imgURL
         });
 
-
-        await Amenity.create({
+        const newAmenity = await Amenity.create({
             spotId: newSpot.id,
             hairDryer,
             hotWater,
@@ -73,7 +79,7 @@ router.post(
             kitchen
         });
 
-        return;
+        return res.json(newSpot)
     })
 );
 
