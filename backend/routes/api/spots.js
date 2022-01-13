@@ -23,10 +23,11 @@ router.get(
     '/',
     asyncHandler(async (req, res, next) => {
         const spots = await Spot.findAll({
-            include: [Image, Amenity]
+            include: [Image, Amenity],
+            order: [
+                ['id', "ASC"]
+            ]
         })
-
-        res.json(spots)
     })
 );
 
@@ -139,4 +140,26 @@ router.put(
     })
 )
 
+router.delete(
+    '/',
+    asyncHandler(async (req, res, next) => {
+        console.log('I made it to the route')
+        const { spotId } = req.body;
+
+        const imageToDelete = await Image.findOne({
+            where: { spotId }
+        })
+        const spotToDelete = await Spot.findByPk(spotId)
+        const amenityToDelete = await Amenity.findOne({
+            where: { spotId }
+        });
+
+        await amenityToDelete.destroy();
+        await imageToDelete.destroy();
+        await spotToDelete.destroy();
+
+        res.json(spotId)
+
+    })
+)
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getSpots } from '../../store/spots';
+import { getSpots, removeSpot } from '../../store/spots';
 
 
 import './MySpotsPage.css';
@@ -20,6 +20,11 @@ function MySpotsPage() {
     });
 
     if (!spots) return null;
+
+    // const handleDelete = spotId => {
+    //     console.log(spotId)
+    //     // dispatch(removeSpot(spot.))
+    // }
 
     return (
         <div id="my-spots-container">
@@ -56,10 +61,13 @@ function MySpotsPage() {
                                         })
                                         }
                                     </ul>
-                                    <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
                                 </div>
                             </Link>
-                            <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
+                                    <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
+                            <div className="edit-and-delete">
+                                <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
+                                <div onClick={() => dispatch(removeSpot(spot.id))} className="delete-link">Delete</div>
+                            </div>
                         </div>
                     )
                 })

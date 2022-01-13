@@ -50,7 +50,10 @@ router.get(
         const userId = parseInt(req.params.userId, 10)
         const spots = await Spot.findAll({
             where: { userId },
-            include: [Image, Amenity]
+            include: [Image, Amenity],
+            order: [
+                ['id', "ASC"]
+            ]
         })
 
         res.json(spots)

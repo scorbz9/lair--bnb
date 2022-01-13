@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE';
+const REMOVE_ONE = 'spots/REMOVE_ONE'
 
 const load = (list) => ({
     type: LOAD,
@@ -11,6 +12,11 @@ const load = (list) => ({
 const addOneSpot = spot => ({
     type: ADD_ONE,
     spot
+})
+
+const removeOneSpot = spotId => ({
+    type: REMOVE_ONE,
+    spotId
 })
 
 export const getSpots = (userId) => async dispatch => {
@@ -45,6 +51,20 @@ export const editSpot = (payload) => async dispatch => {
     return spot;
 }
 
+export const removeSpot = payload => async dispatch => {
+    payload = { spotId: payload }
+    const response = await csrfFetch('/api/spots', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+
+    console.log('I made it back from the fetch')
+    const spotId = await response.json();
+
+    dispatch(removeOneSpot(spotId))
+}
+
 const initialState = {
     list: [],
 }
@@ -77,6 +97,14 @@ const spotReducer = (state = initialState, action) => {
                     ...action.spot,
                 }
             }
+        }
+        case REMOVE_ONE: {
+            const newState = { ...state };
+            delete newState[action.spotId];
+            const listItem = newState.list.find(id => id === action.spotId);
+            newState.list.splice(newState.list.indexOf(listItem), 1);
+
+            return newState;
         }
         default:
             return state;
