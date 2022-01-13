@@ -1,9 +1,8 @@
 #spot-list-container {
     position: relative;
-    margin: 0 auto;
+    margin: 60px auto 0px auto;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
     width: 750px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     z-index: 1;
