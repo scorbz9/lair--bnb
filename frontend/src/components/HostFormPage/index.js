@@ -51,7 +51,7 @@ function HostFormPage() {
     }
 
     let newSpot = await dispatch(createSpot(spot))
-    console.log(newSpot)
+
     if (newSpot) {
       history.push(`/spots`)
     }

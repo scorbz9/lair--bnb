@@ -4,6 +4,11 @@
     border-bottom: 1.25px solid rgba(0, 0, 0, 0.1);
     width: 100%;
     padding: 0px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    display: block;
+    background: white;
 }
 
 .navlink {
@@ -40,6 +45,7 @@
     width: 200px;
     clear: right;
     background-color: #f3efe9;
+    display: inline;
 }
 
 .profile-dropdown li {
