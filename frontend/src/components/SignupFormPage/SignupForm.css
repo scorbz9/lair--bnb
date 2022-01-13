@@ -12,3 +12,27 @@ form input {
     margin: 5px 0px;
     width: 100%;
 }
+
+#sign-up-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 200px;
+}
+
+#sign-up-container button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 5px 0px;
+    display: inline-block;
+    font-size: 10x;
+    background-color: #88404d;
+    color: whitesmoke;
+    border: none;
+    border-radius: 8px;
+}
+
+#sign-up-container button:hover {
+    background-color: #68323b;
+}

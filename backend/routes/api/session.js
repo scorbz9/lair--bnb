@@ -44,6 +44,26 @@ router.post(
     }),
 );
 
+router.post(
+    '/demo',
+    asyncHandler(async (req, res, next) => {
+        const user = await User.scope('loginUser').findByPk(1)
+
+        if (!user) {
+            const err = new Error('Login failed');
+            err.status = 401;
+            err.title = 'Login failed';
+            return next(err);
+        }
+
+        await setTokenCookie(res, user);
+
+        return res.json({
+            user,
+        });
+    }),
+);
+
 router.delete(
     '/',
     (_req, res) => {

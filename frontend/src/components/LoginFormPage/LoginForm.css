@@ -2,13 +2,38 @@
     box-sizing: border-box;
 }
 
-form {
+#log-in-container {
     display: flex;
     flex-direction: column;
     width: 200px;
+    margin: 0 auto;
+}
+
+#log-in-container button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: transparent;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 5px 0px;
+    display: inline-block;
+    /* font-size: 10px; */
+    background-color: #88404d;
+    color: whitesmoke;
+    border: none;
+    border-radius: 8px;
+}
+
+#log-in-container button:hover {
+    background-color: #68323b;
 }
 
 form input {
     margin: 5px 0px;
     width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    height: 25px;
+    width: 25px;
+    padding: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

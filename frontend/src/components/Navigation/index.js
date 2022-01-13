@@ -8,10 +8,17 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
+  let mySpotsLink;
+
   if (sessionUser) {
     sessionLinks = (
       <ProfileButton user={sessionUser} />
     );
+
+    mySpotsLink = (
+      <NavLink id="spots-link" className="navlink logged-in" exact to="/spots">My Spots</NavLink>
+    )
+
   } else {
     sessionLinks = (
       <>
@@ -25,6 +32,9 @@ function Navigation({ isLoaded }){
     <ul id="navbar">
       <li>
         <NavLink className="navlink" exact to="/">Home</NavLink>
+        {mySpotsLink}
+      </li>
+      <li>
         {isLoaded && sessionLinks}
       </li>
     </ul>

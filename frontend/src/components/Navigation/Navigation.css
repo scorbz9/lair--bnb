@@ -10,12 +10,15 @@
     display: block;
     background: white;
     margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navlink {
     text-decoration: none;
     padding: 8px 12px;
-    margin: 13px 10px 0px 10px;
+    margin: 0 10px;
     display: inline-block;
     font-family: Verdana, Geneva, Tahoma;
     font-size: 15px;
@@ -44,9 +47,12 @@
     padding: 5px 10px 5px 10px;
     border-radius: 3px;
     width: 200px;
+    display: inline;
     clear: right;
     background-color: #f3efe9;
-    display: inline;
+    position: relative;
+    margin-right: 10px;
+    margin-top: 50px;
 }
 
 .profile-dropdown li {
