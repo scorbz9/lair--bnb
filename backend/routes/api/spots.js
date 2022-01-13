@@ -30,6 +30,8 @@ router.get(
                 ['id', "ASC"]
             ]
         })
+
+        res.json(spots)
     })
 );
 

@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import SplashPage from "./components/SplashPage"
 import HostFormPage from "./components/HostFormPage";
 import MySpotsPage from "./components/MySpotsPage";
 import EditSpotFormPage from "./components/EditSpotFormPage";
@@ -21,6 +22,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <SplashPage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

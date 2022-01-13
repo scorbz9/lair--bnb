@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getSpots, removeSpot } from '../../store/spots';
+import { getUserSpots, removeSpot } from '../../store/spots';
 
 
 import './MySpotsPage.css';
@@ -12,7 +12,7 @@ function MySpotsPage() {
     const sessionUser = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(getSpots(sessionUser.id))
+        dispatch(getUserSpots(sessionUser.id))
     }, [dispatch, sessionUser.id])
 
     const spots = useSelector(state => {

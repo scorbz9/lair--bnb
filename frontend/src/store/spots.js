@@ -19,7 +19,14 @@ const removeOneSpot = spotId => ({
     spotId
 })
 
-export const getSpots = (userId) => async dispatch => {
+export const getSpots = () => async dispatch => {
+    const response = await csrfFetch(`/api/spots`);
+
+    const spots = await response.json();
+    dispatch(load(spots))
+}
+
+export const getUserSpots = (userId) => async dispatch => {
     const response = await csrfFetch(`/api/users/${userId}/spots`)
     const spots = await response.json();
 
