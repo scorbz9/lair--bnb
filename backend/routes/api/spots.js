@@ -1,6 +1,8 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { User, Spot, Image, Amenity } = require('../../db/models');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -31,8 +33,22 @@ router.get(
     })
 );
 
+const postSpotValidations = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide an address.'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a description.'),
+    check('pricePerNight')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a price.'),
+    handleValidationErrors,
+]
+
 router.post(
     '/',
+    postSpotValidations,
     asyncHandler(async (req, res, next) => {
         const {
             userId,
