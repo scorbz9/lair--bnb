@@ -98,4 +98,45 @@ router.post(
     })
 );
 
+router.put(
+    '/',
+    asyncHandler(async (req, res, next) => {
+        const {
+            userId,
+            address,
+            description,
+            pricePerNight,
+            hairDryer,
+            hotWater,
+            hangers,
+            bedLinens,
+            iron,
+            tv,
+            heating,
+            smokeAlarm,
+            wifi,
+            parking,
+            kitchen,
+            spotId
+        } = req.body;
+
+        const spot = await Spot.findByPk(spotId, {
+            include: [Image, Amenity]
+        })
+
+        const amenity = await Amenity.findOne({
+            where: { spotId }
+        })
+
+        await amenity.update(req.body)
+        await spot.update(req.body);
+
+        const updatedSpot = await Spot.findByPk(spotId, {
+            include: [Image, Amenity]
+        })
+
+        res.json(updatedSpot);
+    })
+)
+
 module.exports = router;

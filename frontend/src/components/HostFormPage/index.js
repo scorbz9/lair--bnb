@@ -24,10 +24,6 @@ function HostFormPage() {
   const [kitchen, setKitchen] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  //   if (sessionUser) return (
-  //     <Redirect to="/" />
-  //   );
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);

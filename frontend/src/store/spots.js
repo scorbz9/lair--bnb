@@ -27,8 +27,21 @@ export const createSpot = (payload) => async dispatch => {
         body: JSON.stringify(payload)
     });
     const spot = await response.json();
-    console.log(spot)
+
     dispatch(addOneSpot(spot))
+    return spot;
+}
+
+export const editSpot = (payload) => async dispatch => {
+    const response = await csrfFetch('/api/spots', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    const spot = await response.json();
+
+    dispatch(addOneSpot(spot));
     return spot;
 }
 

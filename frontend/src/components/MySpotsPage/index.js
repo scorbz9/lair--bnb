@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import * as sessionActions from '../../store/session';
+import React, { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getSpots } from '../../store/spots';
+
 
 import './MySpotsPage.css';
 
@@ -12,7 +13,7 @@ function MySpotsPage() {
 
     useEffect(() => {
         dispatch(getSpots(sessionUser.id))
-    }, [dispatch])
+    }, [dispatch, sessionUser.id])
 
     const spots = useSelector(state => {
         return state.spots.list.map(spot => state.spots[spot.id])
@@ -35,31 +36,31 @@ function MySpotsPage() {
                             const text = key
                             const result = text.replace(/([A-Z])/g, " $1");
                             const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
-                            console.log(finalResult);
 
                             sampleAmenities.push(finalResult)
                             if (sampleAmenities.length > 3) break;
                         }
                     }
 
-                    console.log(sampleAmenities)
-
                     return (
-                        <Link className="spot-container" key={`${spot.id}`} to={`/spots/${spot.id}`}>
-                            <img className="spot-image" src={`${spot.Images[0].imgURL}`}></img>
-                            <div className="spot-info-container">
-                                <h3 className="spot-address">{`${spot.address}`}</h3>
-                                <ul className="spot-amenity-preview">
-                                    {sampleAmenities.map((amenity) => {
-                                        return (
-                                            <li className="spot-amenity-item" key={`${amenity}`}>{amenity}</li>
-                                        )
-                                    })
-                                    }
-                                </ul>
-                                <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
-                            </div>
-                        </Link>
+                        <div key={`${spot.id}`} className="spot-container">
+                            <Link className="link-wrapper" to={`/spots/${spot.id}`}>
+                                <img className="spot-image" src={`${spot.Images[0].imgURL}`} alt="Lair"></img>
+                                <div className="spot-info-container">
+                                    <h3 className="spot-address">{`${spot.address}`}</h3>
+                                    <ul className="spot-amenity-preview">
+                                        {sampleAmenities.map((amenity) => {
+                                            return (
+                                                <li className="spot-amenity-item" key={`${amenity}`}>{amenity}</li>
+                                            )
+                                        })
+                                        }
+                                    </ul>
+                                    <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
+                                </div>
+                            </Link>
+                            <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
+                        </div>
                     )
                 })
                 }
@@ -67,6 +68,5 @@ function MySpotsPage() {
         </div>
     )
 }
-
 
 export default MySpotsPage;

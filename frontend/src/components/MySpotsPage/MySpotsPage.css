@@ -8,16 +8,20 @@
     z-index: 1;
 }
 
-#spot-list-container a {
-    text-decoration: none;
-    color: grey;
-}
-
 .spot-container {
     display: flex;
     flex-direction: row;
-    margin: 10px;
+    margin: 10px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    /* width: 100%; */
+}
+
+.link-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    text-decoration: none;
+    color: grey;
 }
 
 #lead-in {
@@ -66,4 +70,15 @@
 
 .spot-amenity-item:nth-child(1) {
     list-style-type: none;
+}
+
+.edit-link {
+    position: absolute;
+    right: 0;
+    color: grey;
+}
+
+.edit-link:hover {
+    color: red;
+    text-decoration: underline;
 }
