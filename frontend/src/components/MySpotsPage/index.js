@@ -21,11 +21,6 @@ function MySpotsPage() {
 
     if (!spots) return null;
 
-    // const handleDelete = spotId => {
-    //     console.log(spotId)
-    //     // dispatch(removeSpot(spot.))
-    // }
-
     return (
         <div id="my-spots-container">
             <div id="spot-list-container">
@@ -49,7 +44,6 @@ function MySpotsPage() {
 
                     return (
                         <div key={`${spot.id}`} className="spot-container">
-                            <Link className="link-wrapper" to={`/spots/${spot.id}`}>
                                 <img className="spot-image" src={`${spot.Images[0].imgURL}`} alt="Lair"></img>
                                 <div className="spot-info-container">
                                     <h3 className="spot-address">{`${spot.address}`}</h3>
@@ -62,7 +56,7 @@ function MySpotsPage() {
                                         }
                                     </ul>
                                 </div>
-                            </Link>
+
                                     <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
                             <div className="edit-and-delete">
                                 <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
