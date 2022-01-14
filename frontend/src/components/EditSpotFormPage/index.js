@@ -113,7 +113,7 @@ function EditSpotFormPage() {
                     <input
                         name="hairDryer"
                         type="checkbox"
-                        value={hairDryer}
+                        checked={hairDryer === true}
                         onChange={(e) => setHairDryer(e.target.checked)}
                         className="checkbox"
                     />
@@ -123,7 +123,7 @@ function EditSpotFormPage() {
                     <input
                         name="hotWater"
                         type="checkbox"
-                        value={hotWater}
+                        checked={hotWater === true}
                         onChange={(e) => setHotWater(e.target.checked)}
                         className="checkbox"
                     />
@@ -133,7 +133,7 @@ function EditSpotFormPage() {
                     <input
                         name="hangers"
                         type="checkbox"
-                        value={hangers}
+                        checked={hangers === true}
                         onChange={(e) => setHangers(e.target.checked)}
                         className="checkbox"
                     />
@@ -143,7 +143,7 @@ function EditSpotFormPage() {
                     <input
                         name="bedLinens"
                         type="checkbox"
-                        value={bedLinens}
+                        checked={bedLinens === true}
                         onChange={(e) => setBedLinens(e.target.checked)}
                         className="checkbox"
                     />
@@ -153,7 +153,7 @@ function EditSpotFormPage() {
                     <input
                         name="iron"
                         type="checkbox"
-                        value={iron}
+                        checked={iron === true}
                         onChange={(e) => setIron(e.target.checked)}
                         className="checkbox"
                     />
@@ -163,7 +163,7 @@ function EditSpotFormPage() {
                     <input
                         name="tv"
                         type="checkbox"
-                        value={tv}
+                        checked={tv === true}
                         onChange={(e) => setTv(e.target.checked)}
                         className="checkbox"
                     />
@@ -173,7 +173,7 @@ function EditSpotFormPage() {
                     <input
                         name="heating"
                         type="checkbox"
-                        value={heating}
+                        checked={heating === true}
                         onChange={(e) => setHeating(e.target.checked)}
                         className="checkbox"
                     />
@@ -183,7 +183,7 @@ function EditSpotFormPage() {
                     <input
                         name="smokeAlarm"
                         type="checkbox"
-                        value={smokeAlarm}
+                        checked={smokeAlarm === true}
                         onChange={(e) => setSmokeAlarm(e.target.checked)}
                         className="checkbox"
                     />
@@ -193,7 +193,7 @@ function EditSpotFormPage() {
                     <input
                         name="wifi"
                         type="checkbox"
-                        value={wifi}
+                        checked={wifi === true}
                         onChange={(e) => setWifi(e.target.checked)}
                         className="checkbox"
                     />
@@ -203,7 +203,7 @@ function EditSpotFormPage() {
                     <input
                         name="parking"
                         type="checkbox"
-                        value={parking}
+                        checked={parking === true}
                         onChange={(e) => setParking(e.target.checked)}
                         className="checkbox"
                     />
@@ -213,7 +213,7 @@ function EditSpotFormPage() {
                     <input
                         name="kitchen"
                         type="checkbox"
-                        value={kitchen}
+                        checked={kitchen === true}
                         onChange={(e) => setKitchen(e.target.checked)}
                         className="checkbox"
                     />
