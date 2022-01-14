@@ -131,6 +131,7 @@ router.post(
 
 router.put(
     '/',
+    postSpotValidations,
     asyncHandler(async (req, res, next) => {
         const {
             userId,

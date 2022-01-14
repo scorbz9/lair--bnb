@@ -29,11 +29,16 @@ function EditSpotFormPage() {
     const [wifi, setWifi] = useState(spot.Amenities[0].wifi);
     const [parking, setParking] = useState(spot.Amenities[0].parking);
     const [kitchen, setKitchen] = useState(spot.Amenities[0].kitchen);
-    const [errors, setErrors] = useState([]);
+    const [addressError, setAddressError] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
+    const [pricePerNightError, setPricePerNightError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors([]);
+
+        setAddressError('');
+        setDescriptionError('');
+        setPricePerNightError('');
 
         const spot = {
             userId: sessionUser.id,
@@ -54,6 +59,10 @@ function EditSpotFormPage() {
             spotId
         }
 
+        if (address.length === 0) setAddressError('Please provide an address.')
+        if (description.length === 0) setDescriptionError('Please provide a description.')
+        if (pricePerNight <= 0) setPricePerNightError('Please provide a nightly price above 0.')
+
 
         console.log(spot)
         let newSpot = await dispatch(editSpot(spot))
@@ -66,16 +75,16 @@ function EditSpotFormPage() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
+            <p className="error">{addressError}</p>
+            <p className="error">{descriptionError}</p>
+            <p className="error">{pricePerNightError}</p>
             <label>
                 Address
                 <input
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    required
+
                 />
             </label>
             <label>
@@ -84,7 +93,7 @@ function EditSpotFormPage() {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    required
+
                 />
             </label>
             <label>
@@ -93,7 +102,7 @@ function EditSpotFormPage() {
                     type="text"
                     value={pricePerNight}
                     onChange={(e) => setPricePerNight(e.target.value)}
-                    required
+
                 />
             </label>
             <ul>
