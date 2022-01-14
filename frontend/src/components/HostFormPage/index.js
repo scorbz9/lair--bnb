@@ -64,7 +64,7 @@ function HostFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="host-form" onSubmit={handleSubmit}>
       <div id="error-section">
         <p className="error">{addressError}</p>
         <p className="error">{descriptionError}</p>
@@ -211,7 +211,7 @@ function HostFormPage() {
           />
         </li>
       </ul>
-      <button type="submit" id="register-button">Register your spot</button>
+      <button type="submit" id="register-button">Edit your spot</button>
     </form>
   );
 }

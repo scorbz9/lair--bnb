@@ -8,6 +8,10 @@ form {
     width: 200px;
 }
 
+#signup-form {
+    margin-top: 60px;
+}
+
 form input {
     margin: 5px 0px;
     width: 100%;

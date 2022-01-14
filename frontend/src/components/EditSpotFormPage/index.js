@@ -72,7 +72,7 @@ function EditSpotFormPage() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="host-form" onSubmit={handleSubmit}>
             <div id="error-section">
                 <p className="error">{addressError}</p>
                 <p className="error">{descriptionError}</p>

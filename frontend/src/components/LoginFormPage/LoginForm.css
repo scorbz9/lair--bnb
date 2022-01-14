@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+form {
+    margin: 0 auto;
+    width: 200px;
+}
+
+#login-form {
+    margin-top: 60px;
+}
+
 #log-in-container {
     display: flex;
     flex-direction: column;
