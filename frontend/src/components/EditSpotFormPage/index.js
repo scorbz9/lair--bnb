@@ -63,8 +63,6 @@ function EditSpotFormPage() {
         if (description.length === 0) setDescriptionError('Please provide a description.')
         if (pricePerNight <= 0) setPricePerNightError('Please provide a nightly price above 0.')
 
-
-        console.log(spot)
         let newSpot = await dispatch(editSpot(spot))
 
         if (newSpot) {

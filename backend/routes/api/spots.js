@@ -174,7 +174,6 @@ router.put(
 router.delete(
     '/',
     asyncHandler(async (req, res, next) => {
-        console.log('I made it to the route')
         const { spotId } = req.body;
 
         const imageToDelete = await Image.findOne({

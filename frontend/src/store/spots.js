@@ -66,7 +66,6 @@ export const removeSpot = payload => async dispatch => {
         body: JSON.stringify(payload)
     })
 
-    console.log('I made it back from the fetch')
     const spotId = await response.json();
 
     dispatch(removeOneSpot(spotId))
