@@ -14,7 +14,19 @@ const imgURLs = [
     'https://res.cloudinary.com/dzi47txgs/image/upload/v1641943792/qp1wyh6bmgfbygidrjph.jpg',
     'https://res.cloudinary.com/dzi47txgs/image/upload/v1641945061/zqnizjemsm0xhkpvgfrr.jpg',
     'https://res.cloudinary.com/dzi47txgs/image/upload/v1641944257/tzlgn66u2r1ovdm7gdfj.jpg',
-    'https://res.cloudinary.com/dzi47txgs/image/upload/v1641945525/nldwmv6xgn7wvtxbyzpd.jpg'
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1641945525/nldwmv6xgn7wvtxbyzpd.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124113/WebImage_doa55b.png',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124114/Eggener-Haunted-01-1020x617_mqgfnj.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124115/5a8df7c1391d9419008b46d5_x7jzhb.png',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124667/abandoned-haunted-house-refuge-of-spirits-moonlit-royalty-free-image-1633983690_ybl4oj.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124119/562fbe249dd7cc1b008c528d_wd1o50.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124123/abandoned-house-260nw-262755167_aqwojz.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124667/abandoned-haunted-house-refuge-of-spirits-moonlit-royalty-free-image-1633983690_ybl4oj.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124673/Scream_20Airbnb_2002_20-_20Exterior_20-_20Credit_20Helynn_20Ospina_mtrzes.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124680/1400948502820_joxtec.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124688/hohh-105-unit-03033r_dhny18.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124697/04spookyhousesgallery_guulie.jpg',
+    'https://res.cloudinary.com/dzi47txgs/image/upload/v1642124707/screen-shot-2018-08-03-at-9-58-29-am-1533305203.png_hdo2jv.png',
 ];
 
 function getRandomArbitrary(min, max) {
