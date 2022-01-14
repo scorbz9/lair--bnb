@@ -9,6 +9,7 @@ import SplashPage from "./components/SplashPage"
 import HostFormPage from "./components/HostFormPage";
 import MySpotsPage from "./components/MySpotsPage";
 import EditSpotFormPage from "./components/EditSpotFormPage";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +42,9 @@ function App() {
             <EditSpotFormPage />
           </Route>
         </Switch>
+
       )}
+      <Footer />
     </>
   );
 }

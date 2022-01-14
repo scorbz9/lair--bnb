@@ -18,6 +18,7 @@ form input {
     flex-direction: column;
     margin: 0 auto;
     width: 200px;
+    height: 725px;
 }
 
 #sign-up-container button {

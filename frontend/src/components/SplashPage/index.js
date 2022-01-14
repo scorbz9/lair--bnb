@@ -14,10 +14,15 @@ function SplashPage() {
     }, [dispatch])
 
     return (
-        <div id="spots-container">
+        <div id="spots">
             <div id="spots-grid">
                 {spots.map(spot => {
-                    return <p key={`${spot.id}`}>{`${spot.address}`}</p>
+                    return (
+                        <div className="spot" key={`${spot.id}`}>
+                            <img className="spot-image" src={`${spot.Images[0].imgURL}`}></img>
+                            <p className="address">{`${spot.address}`}</p>
+                        </div>
+                    )
                 })}
             </div>
         </div>
