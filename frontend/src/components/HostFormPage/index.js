@@ -22,11 +22,16 @@ function HostFormPage() {
   const [wifi, setWifi] = useState(false);
   const [parking, setParking] = useState(false);
   const [kitchen, setKitchen] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [addressError, setAddressError] = useState('');
+  const [descriptionError, setDescriptionError] = useState('');
+  const [pricePerNightError, setPricePerNightError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
+
+    setAddressError('');
+    setDescriptionError('');
+    setPricePerNightError('');
 
     const spot = {
       userId: sessionUser.id,
@@ -46,6 +51,10 @@ function HostFormPage() {
       kitchen
     }
 
+    if (address.length === 0) setAddressError('Please provide an address.')
+    if (description.length === 0) setDescriptionError('Please provide a description.')
+    if (pricePerNight <= 0) setPricePerNightError('Please provide a nightly price above 0.')
+
     let newSpot = await dispatch(createSpot(spot))
 
     if (newSpot) {
@@ -56,16 +65,17 @@ function HostFormPage() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+        <p className="error">{addressError}</p>
+        <p className="error">{descriptionError}</p>
+        <p className="error">{pricePerNightError}</p>
+
       <label>
         Address
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -74,7 +84,7 @@ function HostFormPage() {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          required
+
         />
       </label>
       <label>
@@ -83,7 +93,7 @@ function HostFormPage() {
           type="text"
           value={pricePerNight}
           onChange={(e) => setPricePerNight(e.target.value)}
-          required
+
         />
       </label>
       <ul>
