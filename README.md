@@ -1,5 +1,5 @@
 # Lairbnb
-Welcome to **Lairbnb**, a clone of Airbnb for spooky houses.
+Welcome to [Lairbnb](lair--bnb.herokuapp.com), a clone of Airbnb for spooky houses.
 
 ### Welcome Page:
 ![enter image description here](https://res.cloudinary.com/dzi47txgs/image/upload/v1642137204/Capture_napzdt.png)
@@ -16,3 +16,10 @@ Welcome to **Lairbnb**, a clone of Airbnb for spooky houses.
  - Express
  - PostgreSQL
  - Heroku
+
+### Future Features
+
+ - Bookings
+ - Reviews
+ - Search
+ - Google Maps integration
