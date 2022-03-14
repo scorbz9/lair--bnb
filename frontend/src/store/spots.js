@@ -91,20 +91,9 @@ const spotReducer = (state = initialState, action) => {
         }
         case ADD_ONE: {
             console.log(action.spot)
-            if (!state[action.spot.spotId]) {
-                const newState = {
-                    ...state,
-                    [action.spot.id]: action.spot
-                };
-                return newState;
-            }
-            return {
-                ...state,
-                [action.spot.id]: {
-                    ...state[action.spot.spotId],
-                    ...action.spot,
-                }
-            }
+            const newState = {...state}
+
+            return { ...newState, entries: [...newState.entries, action.spot]}
         }
         case EDIT_ONE: {
             const newState = { ...state };

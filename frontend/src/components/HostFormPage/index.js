@@ -211,7 +211,7 @@ function HostFormPage() {
           />
         </li>
       </ul>
-      <button type="submit" id="register-button">Edit your spot</button>
+      <button type="submit" id="register-button">Add your spot</button>
     </form>
   );
 }
