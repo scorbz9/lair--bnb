@@ -10,12 +10,14 @@ import HostFormPage from "./components/HostFormPage";
 import MySpotsPage from "./components/MySpotsPage";
 import EditSpotFormPage from "./components/EditSpotFormPage";
 import Footer from "./components/Footer";
+import { getSpots } from "./store/spots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getSpots())
   }, [dispatch]);
 
   return (

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getUserSpots, removeSpot } from '../../store/spots';
+import { getSpots, removeSpot } from '../../store/spots';
 
 
 import './MySpotsPage.css';
@@ -11,13 +11,9 @@ function MySpotsPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        dispatch(getUserSpots(sessionUser.id))
-    }, [dispatch, sessionUser.id])
+    const spots = useSelector(state => state.spotsState.entries);
 
-    const spots = useSelector(state => {
-        return state.spots.list.map(spot => state.spots[spot.id])
-    });
+    const userSpots = spots.filter(spot => spot.userId === sessionUser.id)
 
     if (!spots) return null;
 
@@ -25,7 +21,7 @@ function MySpotsPage() {
         <div id="my-spots-container">
             <div id="spot-list-container">
                 <p id="lead-in">View the spots you host...</p>
-                {spots.map((spot) => {
+                {userSpots.map((spot) => {
                     let currentSpotAmenities = spot.Amenities[0];
                     let sampleAmenities = [];
 
