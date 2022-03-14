@@ -5,13 +5,12 @@ import './SplashPage.css';
 
 function SplashPage() {
     const dispatch = useDispatch();
-    const spots = useSelector(state => {
-        return state.spots.list.map(spot => state.spots[spot.id])
-    });
 
     useEffect(() => {
         dispatch(getSpots())
     }, [dispatch])
+
+    const spots = useSelector(state => state.spotsState.entries);
 
     return (
         <div id="spots">

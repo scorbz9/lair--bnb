@@ -72,23 +72,19 @@ export const removeSpot = payload => async dispatch => {
 }
 
 const initialState = {
-    list: [],
+    entries: [],
 }
 
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
-            const allSpots = {};
-            action.list.forEach(spot => {
-                allSpots[spot.id] = spot;
-            });
             return {
-                ...allSpots,
                 ...state,
-                list: action.list
+                entries: [...action.list]
             };
         }
         case ADD_ONE: {
+            console.log(action.spot)
             if (!state[action.spot.spotId]) {
                 const newState = {
                     ...state,
