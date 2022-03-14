@@ -11,10 +11,6 @@ function MySpotsPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        dispatch(getSpots())
-    }, [dispatch])
-
     const spots = useSelector(state => state.spotsState.entries);
 
     const userSpots = spots.filter(spot => spot.userId === sessionUser.id)

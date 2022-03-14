@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE';
+const EDIT_ONE = 'spots/EDIT_ONE'
 const REMOVE_ONE = 'spots/REMOVE_ONE'
 
 const load = (list) => ({
@@ -11,6 +12,11 @@ const load = (list) => ({
 
 const addOneSpot = spot => ({
     type: ADD_ONE,
+    spot
+})
+
+const editOneSpot = spot => ({
+    type: EDIT_ONE,
     spot
 })
 
@@ -54,7 +60,7 @@ export const editSpot = (payload) => async dispatch => {
 
     const spot = await response.json();
 
-    dispatch(addOneSpot(spot));
+    dispatch(editOneSpot(spot));
     return spot;
 }
 
@@ -100,13 +106,27 @@ const spotReducer = (state = initialState, action) => {
                 }
             }
         }
+        case EDIT_ONE: {
+            const newState = { ...state };
+
+            const spotToEditId = action.spot.id;
+            const spotToEdit = newState.entries.find(spot => spot.id === spotToEditId)
+            const spotToEditIndex = newState.entries.indexOf(spotToEdit)
+
+            newState.entries[spotToEditIndex] = action.spot
+
+            return {...newState, entries: newState.entries };
+        }
         case REMOVE_ONE: {
             const newState = { ...state };
-            delete newState[action.spotId];
-            const listItem = newState.list.find(id => id === action.spotId);
-            newState.list.splice(newState.list.indexOf(listItem), 1);
 
-            return newState;
+            const spotToDelete = newState.entries.find(spot => spot.id === action.spotId)
+            const spotToDeleteIndex = newState.entries.indexOf(spotToDelete)
+
+            const left = newState.entries.slice(0, spotToDeleteIndex)
+            const right = newState.entries.slice(spotToDeleteIndex + 1)
+
+            return {...newState, entries: [...left, ...right]};
         }
         default:
             return state;

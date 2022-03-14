@@ -1,34 +1,41 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { editSpot } from '../../store/spots'
+import { editSpot, getSpots } from '../../store/spots'
 
 import './EditSpotForm.css';
 
 function EditSpotFormPage() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-
-    const spotId = useParams().spotId;
-    const spots = useSelector(state => state.spots);
-    const spot = spots[spotId];
-
     const history = useHistory();
 
-    const [address, setAddress] = useState(spot.address);
-    const [description, setDescription] = useState(spot.description);
-    const [pricePerNight, setPricePerNight] = useState(spot.pricePerNight);
-    const [hairDryer, setHairDryer] = useState(spot.Amenities[0].hairDryer);
-    const [hotWater, setHotWater] = useState(spot.Amenities[0].hotWater);
-    const [hangers, setHangers] = useState(spot.Amenities[0].hangers);
-    const [bedLinens, setBedLinens] = useState(spot.Amenities[0].bedLinens);
-    const [iron, setIron] = useState(spot.Amenities[0].iron);
-    const [tv, setTv] = useState(spot.Amenities[0].tv);
-    const [heating, setHeating] = useState(spot.Amenities[0].heating);
-    const [smokeAlarm, setSmokeAlarm] = useState(spot.Amenities[0].smokeAlarm);
-    const [wifi, setWifi] = useState(spot.Amenities[0].wifi);
-    const [parking, setParking] = useState(spot.Amenities[0].parking);
-    const [kitchen, setKitchen] = useState(spot.Amenities[0].kitchen);
+    const sessionUser = useSelector(state => state.session.user);
+
+    const spotId = parseInt(useParams().spotId);
+    const spots = useSelector(state => state.spotsState.entries);
+    let spot = spots.find(spot => spot.id === spotId)
+
+    if (spot) localStorage.setItem('spot', JSON.stringify(spot))
+
+    if (!spot) {
+        spot = JSON.parse(localStorage.getItem('spot'))
+    }
+
+    const [address, setAddress] = useState(spot?.address);
+    const [description, setDescription] = useState(spot?.description);
+    const [pricePerNight, setPricePerNight] = useState(spot?.pricePerNight);
+    const [hairDryer, setHairDryer] = useState(spot?.Amenities[0].hairDryer);
+    const [hotWater, setHotWater] = useState(spot?.Amenities[0].hotWater);
+    const [hangers, setHangers] = useState(spot?.Amenities[0].hangers);
+    const [bedLinens, setBedLinens] = useState(spot?.Amenities[0].bedLinens);
+    const [iron, setIron] = useState(spot?.Amenities[0].iron);
+    const [tv, setTv] = useState(spot?.Amenities[0].tv);
+    const [heating, setHeating] = useState(spot?.Amenities[0].heating);
+    const [smokeAlarm, setSmokeAlarm] = useState(spot?.Amenities[0].smokeAlarm);
+    const [wifi, setWifi] = useState(spot?.Amenities[0].wifi);
+    const [parking, setParking] = useState(spot?.Amenities[0].parking);
+    const [kitchen, setKitchen] = useState(spot?.Amenities[0].kitchen);
+
     const [addressError, setAddressError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
     const [pricePerNightError, setPricePerNightError] = useState('');
@@ -219,7 +226,7 @@ function EditSpotFormPage() {
                     />
                 </li>
             </ul>
-            <button type="submit" id="register-button">Register your spot</button>
+            <button type="submit" id="register-button">Edit your spot</button>
         </form>
     );
 }
