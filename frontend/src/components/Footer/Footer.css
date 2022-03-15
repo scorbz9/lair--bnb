@@ -1,10 +1,11 @@
 #footer {
     height: 30px;
+    margin-bottom: -50px;
+    margin-left: 10px;
 }
 
 .git-link {
     font-size: 17px;
-    /* font-weight: bold; */
     text-decoration: none;
     color: #6d6c72;
     margin: 0px 7px;

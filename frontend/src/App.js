@@ -44,7 +44,6 @@ function App() {
             <EditSpotFormPage />
           </Route>
         </Switch>
-
       )}
       <Footer />
     </>

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { createSpot } from '../../store/spots'
+
 import './Footer.css';
 
 function Footer() {
@@ -12,7 +10,7 @@ function Footer() {
             </a>
         </div>
     )
-    }
+}
 
 
 export default Footer;
