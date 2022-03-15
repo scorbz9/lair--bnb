@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 
-import lairbnbIcon from '../../img/lair--bnb_icon.png'
-
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -26,8 +24,8 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
-        <NavLink id="sign-up" className="navlink logged-out" to="/login">Log In</NavLink>
-        <NavLink id="log-in" className="navlink logged-out" to="/signup">Sign Up</NavLink>
+        <NavLink id="log-in" to="/login">Log In</NavLink>
+        <NavLink id="sign-up" to="/signup">Sign Up</NavLink>
       </>
     );
   }
@@ -37,7 +35,6 @@ function Navigation({ isLoaded }){
       <li id="left-navbar-container">
         <NavLink exact to="/">
           <div id="logo-container">
-            {/* <img id="logo-icon" src={lairbnbIcon}></img> */}
             <i className="fas fa-hotel" id="logo-icon"></i>
             <div id="logo-text">
               Lairbnb
