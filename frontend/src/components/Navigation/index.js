@@ -2,21 +2,25 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+
+import lairbnbIcon from '../../img/lair--bnb_icon.png'
+
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
-  let mySpotsLink;
+  let hostLink;
 
   if (sessionUser) {
     sessionLinks = (
       <ProfileButton user={sessionUser} />
     );
 
-    mySpotsLink = (
-      <NavLink id="spots-link" className="navlink logged-in" exact to="/spots">My Spots</NavLink>
+    hostLink = (
+      <NavLink id="host-button" exact to="/host">Become a host</NavLink>
+
     )
 
   } else {
@@ -30,11 +34,18 @@ function Navigation({ isLoaded }){
 
   return (
     <ul id="navbar">
-      <li>
-        <NavLink className="navlink" exact to="/">Home</NavLink>
-        {mySpotsLink}
+      <li id="left-navbar-container">
+        <NavLink exact to="/">
+          <div id="logo-container">
+            <img id="logo-icon" src={lairbnbIcon}></img>
+            <div id="logo-text">
+              Lairbnb
+            </div>
+          </div>
+        </NavLink>
       </li>
-      <li>
+      <li id="right-navbar-container">
+        {hostLink}
         {isLoaded && sessionLinks}
       </li>
     </ul>

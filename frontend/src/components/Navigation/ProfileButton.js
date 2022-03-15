@@ -34,15 +34,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button className="navlink logged-in" onClick={openMenu}>
-        <i className="fas fa-church" />
+      <button id="user-button" onClick={openMenu}>
+        <i className="fas fa-bars user-button-icon" id="user-button-bars"/>
+        <i className="fas fa-user user-button-icon" />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <NavLink id="host-button" exact to="/host">Become a host</NavLink>
+            <NavLink id="view-your-spots-button" exact to="/spots">View your spots</NavLink>
           </li>
           <li>
             <button onClick={logout}>Log Out</button>

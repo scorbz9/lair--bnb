@@ -1,6 +1,6 @@
 #navbar {
     list-style-type: none;
-    height: 60px;
+    height: 80px;
     border-bottom: 1.25px solid rgba(0, 0, 0, 0.1);
     width: 100%;
     padding: 0px;
@@ -35,7 +35,6 @@
 }
 
 .logged-out,
-.logged-in,
 .profile-dropdown {
     float: right;
 }
@@ -72,7 +71,7 @@
     margin-top: 10px;
 }
 
-.profile-dropdown #host-button {
+.profile-dropdown #view-your-spots-button {
     text-decoration: none;
     margin-top: 4px;
     color: black;
@@ -82,7 +81,7 @@
 }
 
 .profile-dropdown button:hover,
-.profile-dropdown #host-button:hover {
+.profile-dropdown #view-your-spots-button:hover {
     color: #88404d;
     text-decoration: underline;
     cursor: pointer;
@@ -96,4 +95,83 @@
 
 #log-in:hover {
     color: #4c4b50;
+}
+
+#left-navbar-container {
+    display: flex;
+    margin-left: 70px;
+    align-items: center;
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+}
+
+#logo-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 14px;
+}
+
+#logo-text {
+    text-decoration: none;
+    color: #88404d;
+    font-family: 'Lato';
+    font-style: italic;
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 5px 10px 5px 12px;
+    border-left: 2px solid #3b3232c5;
+}
+
+#right-navbar-container {
+    margin-right: 70px;
+    width: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#host-button {
+    font-weight: 600;
+    letter-spacing: 1.25px;
+    font-size: 14px;
+    border-radius: 20px;
+    width: 129px;
+    height: 42px;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#host-button:hover {
+    background-color: rgba(175, 175, 175, 0.1);
+}
+
+#user-button {
+    border: 1px solid rgba(184, 182, 182, 0.4);
+    border-radius: 20px;
+    background-color: transparent;
+    width: 77px;
+    height: 42px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+#user-button:hover {
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1)
+}
+
+.user-button-icon {
+    font-size: 18px;
+}
+
+#user-button-bars {
+    font-size: 14px;
 }
