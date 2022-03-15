@@ -1,12 +1,14 @@
 #footer {
     height: 30px;
     margin-bottom: -50px;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    background-color: black;
 }
 
 .footer-content {
     font-size: 17px;
-    color: #96959c;
+    color: gainsboro;
     margin: 0px 7px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
@@ -14,14 +16,10 @@
     cursor: default;
 }
 
-.git-link:hover {
-    color: #37363a
-}
-
 .footer-icon {
     margin-left: 10px;
     font-size: 20px;
     position: relative;
-    top: 1px;
-    color: black;
+    top: 2.5px;
+    color: gainsboro;
 }

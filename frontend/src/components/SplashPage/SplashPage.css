@@ -1,4 +1,71 @@
-#spots-grid {
+#first {
+    background-color: black;
+    height: 900px;
+    width: 100%;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+#first-main-content {
+    position: relative;
+    margin: 50px auto;
+    height: 680px;
+    width: 1369px;
+}
+
+#first-background-img {
+    height: 100%;
+    width: 100%;
+    /* position: absolute; */
+    z-index: 2;
+    border-radius: 12px;
+}
+
+#first-header-container {
+    position: absolute;
+    color: white;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 940px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#first-header {
+    font-size: 48px;
+    cursor: default;
+    margin-bottom: 30px;
+}
+
+#first-view-spots-button {
+    height: 56px;
+    width: 161.5px;
+    align-self: center;
+    padding: 14px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+#first-view-spots-button-text {
+    background-image: linear-gradient(60deg, #9036b0, #ac0488);
+    background-clip: text;
+    color: transparent;
+}
+
+/* #spots-grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -21,4 +88,4 @@
 .address {
     font-size: 16px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+} */

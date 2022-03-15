@@ -37,7 +37,8 @@ function Navigation({ isLoaded }){
       <li id="left-navbar-container">
         <NavLink exact to="/">
           <div id="logo-container">
-            <img id="logo-icon" src={lairbnbIcon}></img>
+            {/* <img id="logo-icon" src={lairbnbIcon}></img> */}
+            <i className="fas fa-hotel" id="logo-icon"></i>
             <div id="logo-text">
               Lairbnb
             </div>
