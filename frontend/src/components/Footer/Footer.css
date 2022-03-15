@@ -6,11 +6,12 @@
 
 .footer-content {
     font-size: 17px;
-    color: #58575c;
+    color: #96959c;
     margin: 0px 7px;
     font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
+    font-weight: 600;
     letter-spacing: 1.25px;
+    cursor: default;
 }
 
 .git-link:hover {

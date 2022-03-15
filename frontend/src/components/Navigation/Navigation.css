@@ -34,57 +34,48 @@
     background-color: #68323b;
 }
 
-.logged-out,
-.profile-dropdown {
-    float: right;
-}
-
-.profile-dropdown {
-    margin: 5px 0px;
-    list-style-type: none;
-    border: 2px solid #4F3130;
-    padding: 5px 10px 5px 10px;
-    border-radius: 3px;
-    width: 200px;
-    display: inline;
-    clear: right;
-    background-color: #f3efe9;
-    position: relative;
-    margin-right: 10px;
-    margin-top: 50px;
-}
-
-.profile-dropdown li {
-    padding: 2px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.profile-dropdown button {
-    background-color: transparent;
-    border: none;
-    padding: 0px;
-    font-size: 12px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.profile-dropdown #view-your-spots-button {
+.profile-dropdown-container .profile-dropdown-button {
     text-decoration: none;
+    background: none;
+    border: none;
     margin-top: 4px;
     color: black;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
 
-.profile-dropdown button:hover,
-.profile-dropdown #view-your-spots-button:hover {
-    color: #88404d;
+.profile-dropdown-container .profile-dropdown-button:hover {
     text-decoration: underline;
-    cursor: pointer;
+}
+
+.profile-dropdown-content {
+    margin: 5px 0px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    width: 200px;
+    height: 170px;
+    display: inline;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    margin-right: 70px;
+    overflow-y: scroll;
+}
+
+.profile-dropdown-content div {
+    margin-bottom: 14px;
+}
+
+#profile-dropdown-logout {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: -2px;
+    padding-bottom: 10px;
 }
 
 #log-in {
