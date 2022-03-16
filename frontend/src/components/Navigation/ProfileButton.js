@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
             <div>{user.username}</div>
             <div>{user.email}</div>
             <div>
-              <NavLink id="view-your-spots-button" className="profile-dropdown-button" exact to="/spots">View your spots</NavLink>
+              <NavLink id="view-your-spots-button" className="profile-dropdown-button" to={`/users/${user.id}/spots`}>View your spots</NavLink>
             </div>
 
               <button onClick={logout} className="profile-dropdown-button" id="profile-dropdown-logout">Log Out</button>

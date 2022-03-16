@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 function SplashPage() {
     const dispatch = useDispatch();
 
+    const user = useSelector(state => state.session.user)
     const spots = useSelector(state => state.spotsState.entries);
 
     return (
@@ -21,7 +22,7 @@ function SplashPage() {
                     <img id="first-background-img" src={splashImg1}></img>
                     <div id="first-header-container">
                         <div id="first-header">Let your desire to save money do the booking</div>
-                        <Link exact to="/spots" id="first-view-spots-button">
+                        <Link to={user ? "/spots" : "/signup"} id="first-view-spots-button">
                             <div id="first-view-spots-button-text">
                                 I'm flexible
                             </div>
@@ -40,7 +41,7 @@ function SplashPage() {
                                 <div id="second-section-one-header">
                                     <strong>Some of them have wifi.</strong>
                                 </div>
-                                <Link className="second-section-spots-button" exact to="/spots">Discover</Link>
+                                <Link className="second-section-spots-button" to={user ? "/spots" : "/signup"}>Discover</Link>
                             </div>
                             <img src={splashImg2} className="second-background-img" id='second-background-img-one'></img>
                         </div>
@@ -49,7 +50,7 @@ function SplashPage() {
                                 <div id="second-section-two-header">
                                     <strong>Think of the money you'll save.</strong>
                                 </div>
-                                <Link className="second-section-spots-button" exact to="/spots">View spots now</Link>
+                                <Link className="second-section-spots-button" to={user ? "/spots" : "/signup"}>View spots now</Link>
                             </div>
                             <img src={splashImg4} className="second-background-img" id='second-background-img-two'></img>
                         </div>
