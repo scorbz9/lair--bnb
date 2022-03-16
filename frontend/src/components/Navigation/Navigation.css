@@ -62,23 +62,32 @@
 #log-in {
     background-color: transparent;
     border: none;
-    color: #84828a;
     letter-spacing: 1.5px;
     margin-right: 25px;
     transition: .2s;
+    padding: 10px 25px;
+    border-radius: 20px;
 }
 
 #log-in:hover {
-    color: #4c4b50;
+    background-color: rgba(175, 175, 175, 0.1);
 }
 
 #sign-up {
-    transition: .2s;
+    background-color: transparent;
+    border: 2px solid #8b0000;
+    border-radius: 3px;
+    padding: 10px 25px;
+    color: #8b0000;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
     letter-spacing: 1.5px;
 }
 
 #sign-up:hover {
-    color: #84828a;
+    color: white;
+    background-color: #8b0000;
 }
 
 #left-navbar-container {
