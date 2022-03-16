@@ -1,6 +1,21 @@
+.host-form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 460px;
+    margin: 80px auto 75px auto;
+    background-color: rgba(136, 0, 0, 0.2);
+    border-radius: 10px;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-timing-function: ease-in;
+    animation-duration: .7s;
+}
+
 .host-form {
-    margin: 60px auto 100px auto;
-    width: 500px;
+    margin: 0 auto;
+    width: 90%;
+    padding: 30px;
     font-size: 16px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
@@ -8,16 +23,20 @@
 .error {
     color: red;
     font-size: 16px;
-    margin: 5px;
+    margin: 10px 0 5px 0;
 }
 
-#error-section {
-    margin-bottom: 12px;
+.host-form-header {
+    margin: 20px 0;
 }
 
 #amenities {
     margin: 0 0 15px 0;
     padding: 0;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 #amenities-label,
@@ -26,22 +45,27 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+.section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section label {
+    letter-spacing: 1.5px;
+}
+
 .amenity {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 40%;
+
 }
 
 .amenity input {
     height: 15px;
     width: 15px;
     margin-left: 8px;
-}
-
-#price-input {
-    width: 25%;
-    display: block;
 }
 
 #register-button {
@@ -53,8 +77,19 @@
     border: none;
     border-radius: 8px;
     padding: 10px;
+    cursor: pointer;
 }
 
 #register-button:hover {
     background-color: #68323b;
+}
+
+.host-form-text-input {
+    padding: 5px;
+    width: 208px;
+}
+
+#description-input {
+    resize: none;
+    height: 100px;
 }
