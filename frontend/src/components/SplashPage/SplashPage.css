@@ -1,9 +1,154 @@
-#spots-grid {
+/* First */
+
+#first {
+    background-color: black;
+    height: 850px;
+    width: 100%;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+#first-main-content {
+    position: relative;
+    margin: 50px auto;
+    height: 680px;
+    width: 1369px;
+}
+
+#first-background-img {
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    border-radius: 12px;
+}
+
+#first-header-container {
+    position: absolute;
+    color: white;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 940px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#first-header {
+    font-size: 48px;
+    cursor: default;
+    margin-bottom: 30px;
+}
+
+#first-view-spots-button {
+    height: 56px;
+    width: 161.5px;
+    align-self: center;
+    padding: 14px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+#first-view-spots-button:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+#first-view-spots-button-text {
+    background-image: linear-gradient(60deg, #9036b0, #ac0488);
+    background-clip: text;
+    color: transparent;
+}
+
+/* Second */
+
+#second {
+    color: white;
+    background: linear-gradient(180deg, black 50%, white 50%);
+    position: relative;
+    width: 100%;
+    height: 800px;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+#second-main-content {
+    height: 680px;
+    width: 1369px;
+    position: relative;
+    margin: 0px auto;
+}
+
+#second-main-content {
+    position: relative;
+}
+
+#second-header {
+    font-size: 42px;
+}
+
+#second-section-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+#second-section-one,
+#second-section-two {
+    position: relative;
+}
+
+#second-section-one-content,
+#second-section-two-content {
+    position: absolute;
+    padding: 80px;
+}
+
+#second-section-one-header,
+#second-section-two-header {
+    margin-bottom: 45px;
+    font-size: 53px;
+}
+
+.second-background-img {
+    height: 668px;
+    width: 668px;
+    border-radius: 10px;
+}
+
+.second-section-spots-button {
+    padding: 14px 24px;
+    font-size: 16px;
+    background-color: white;
+    color: black !important;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+
+}
+
+.second-section-spots-button:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+/* #spots-grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 90px;
     background-color: white;
     width: 100%;
     z-index: 3;
@@ -21,4 +166,4 @@
 .address {
     font-size: 16px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
+} */

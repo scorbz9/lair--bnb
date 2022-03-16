@@ -8,6 +8,7 @@ function HostFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
+
   const [address, setAddress] = useState('');
   const [description, setDescription] = useState('');
   const [pricePerNight, setPricePerNight] = useState(0);

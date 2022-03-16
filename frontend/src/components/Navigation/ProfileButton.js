@@ -33,23 +33,24 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <button className="navlink logged-in" onClick={openMenu}>
-        <i className="fas fa-church" />
+    <div className="profile-dropdown-container">
+      <button id="user-button" onClick={openMenu}>
+        <i className="fas fa-bars user-button-icon" id="user-button-bars"/>
+        <i className="fas fa-user user-button-icon" />
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <NavLink id="host-button" exact to="/host">Become a host</NavLink>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+          <div className="profile-dropdown-content">
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+            <div>
+              <NavLink id="view-your-spots-button" className="profile-dropdown-button" to={`/users/${user.id}/spots`}>View your spots</NavLink>
+            </div>
+
+              <button onClick={logout} className="profile-dropdown-button" id="profile-dropdown-logout">Log Out</button>
+
+          </div>
       )}
-    </>
+    </div>
   );
 }
 

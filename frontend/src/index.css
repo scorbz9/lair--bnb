@@ -1,6 +1,15 @@
 /* TODO Add site wide styles */
 * {
     box-sizing: border-box;
+    font-family: 'Lato';
 }
 
-html, body, #root { height: 100%;   width: 100%; margin: 0; padding: 0; }
+html, body, #root { margin: 0; padding: 0; }
+
+a, a:hover, a:visited, a:active {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}

@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 import { getSpots, removeSpot } from '../../store/spots';
 
 
-import './MySpotsPage.css';
+import './SpotsPage.css';
 
-function MySpotsPage() {
+function SpotsPage({ mySpots }) {
     const dispatch = useDispatch();
+
     const sessionUser = useSelector(state => state.session.user);
 
-    const spots = useSelector(state => state.spotsState.entries);
+    let spots = useSelector(state => state.spotsState.entries);
 
-    const userSpots = spots.filter(spot => spot.userId === sessionUser.id)
+    if (mySpots) {
+        spots = spots.filter(spot => spot.userId === sessionUser.id)
+    }
 
     if (!spots) return null;
 
@@ -21,7 +24,7 @@ function MySpotsPage() {
         <div id="my-spots-container">
             <div id="spot-list-container">
                 <p id="lead-in">View the spots you host...</p>
-                {userSpots.map((spot) => {
+                {spots.map((spot) => {
                     let currentSpotAmenities = spot.Amenities[0];
                     let sampleAmenities = [];
 
@@ -54,10 +57,13 @@ function MySpotsPage() {
                                 </div>
 
                                     <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
-                            <div className="edit-and-delete">
-                                <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
-                                <div onClick={() => dispatch(removeSpot(spot.id))} className="delete-link">Delete</div>
-                            </div>
+
+                            {sessionUser.id === spot.userId ?
+                                <div className="edit-and-delete">
+                                    <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
+                                    <div onClick={() => dispatch(removeSpot(spot.id))} className="delete-link">Delete</div>
+                                </div>
+                            : <></>}
                         </div>
                     )
                 })
@@ -67,4 +73,4 @@ function MySpotsPage() {
     )
 }
 
-export default MySpotsPage;
+export default SpotsPage;

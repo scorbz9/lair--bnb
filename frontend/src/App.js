@@ -7,7 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage"
 import HostFormPage from "./components/HostFormPage";
-import MySpotsPage from "./components/MySpotsPage";
+import SpotsPage from "./components/SpotsPage";
 import EditSpotFormPage from "./components/EditSpotFormPage";
 import Footer from "./components/Footer";
 import { getSpots } from "./store/spots";
@@ -23,7 +23,6 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
         <Switch>
           <Route exact path="/">
             <SplashPage />
@@ -38,14 +37,15 @@ function App() {
             <HostFormPage />
           </Route>
           <Route exact path="/spots">
-            <MySpotsPage />
+            <SpotsPage mySpots={false}/>
+          </Route>
+          <Route exact path="/users/:userId/spots">
+            <SpotsPage mySpots={true} />
           </Route>
           <Route path="/spots/:spotId/edit">
             <EditSpotFormPage />
           </Route>
         </Switch>
-
-      )}
       <Footer />
     </>
   );
