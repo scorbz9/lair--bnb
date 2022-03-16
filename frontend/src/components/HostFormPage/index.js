@@ -223,9 +223,14 @@ function HostFormPage() {
             />
           </li>
         </ul>
-        <label> Upload a photo
-          <input type="file" onChange={updateFile} />
-        </label>
+          <h2 id="amenities-label">Upload a photo</h2>
+          <label htmlFor="upload-photo-button" className="section" id="upload-photo">Choose a file</label>
+            <input
+              type="file"
+              onChange={updateFile}
+              id="upload-photo-button"
+            />
+            {image ? <div id="staged-upload">{image.name}</div> : <div id="staged-upload">No file chosen</div>}
         <button type="submit" id="register-button">Add your spot</button>
       </form>
     </div>

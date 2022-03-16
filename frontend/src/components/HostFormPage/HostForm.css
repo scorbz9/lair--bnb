@@ -27,7 +27,7 @@
 }
 
 .host-form-header {
-    margin: 20px 0;
+    margin: 10px 0 20px 0;
 }
 
 #amenities {
@@ -78,6 +78,7 @@
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
+    display: block;
 }
 
 #register-button:hover {
@@ -92,4 +93,33 @@
 #description-input {
     resize: none;
     height: 100px;
+}
+
+#upload-photo {
+    width: 141px;
+    font-family: Verdana, Geneva, Tahoma;
+    font-size: 15px;
+    background-color: transparent;
+    color: #8b0000;
+    border: 1px solid #8b0000;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#upload-photo:hover {
+    background-color: rgba(136, 0, 0, 0.158);
+}
+
+
+input[type='file'] {
+    display: none !important;
+}
+
+#staged-upload {
+    display: inline-block;
+    margin-left: 20px;
 }
