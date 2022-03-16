@@ -37,7 +37,7 @@ function Navigation({ isLoaded }){
           <div id="logo-container">
             <i className="fas fa-hotel" id="logo-icon"></i>
             <div id="logo-text">
-              Lairbnb
+            <span style={{"color": "black"}}>Lair</span>bnb
             </div>
           </div>
         </NavLink>

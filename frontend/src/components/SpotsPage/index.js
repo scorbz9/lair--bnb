@@ -1,29 +1,39 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getSpots, removeSpot } from '../../store/spots';
+import { Link, useParams } from 'react-router-dom';
+import { removeSpot } from '../../store/spots';
 
+
+import { getSpots } from '../../store/spots';
 
 import './SpotsPage.css';
 
-function SpotsPage({ mySpots }) {
+function SpotsPage({ allSpots }) {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getSpots())
+      }, [dispatch]);
+
     const sessionUser = useSelector(state => state.session.user);
+    const userId = parseInt(useParams().userId, 10)
 
     let spots = useSelector(state => state.spotsState.entries);
 
-    if (mySpots) {
-        spots = spots.filter(spot => spot.userId === sessionUser.id)
+    if (!allSpots) {
+        spots = spots.filter(spot => spot.userId === userId)
     }
 
-    if (!spots) return null;
+    if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
 
     return (
         <div id="my-spots-container">
             <div id="spot-list-container">
-                <p id="lead-in">View the spots you host...</p>
+                { allSpots ? <p id="lead-in">View all available spots...</p>
+                    : !allSpots && sessionUser?.id === userId ? <p id="lead-in">View the spots you host...</p>
+                    : <p id="lead-in">View this user's spots...</p>
+                }
                 {spots.map((spot) => {
                     let currentSpotAmenities = spot.Amenities[0];
                     let sampleAmenities = [];
@@ -58,7 +68,7 @@ function SpotsPage({ mySpots }) {
 
                                     <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
 
-                            {sessionUser.id === spot.userId ?
+                            {sessionUser?.id === spot.userId ?
                                 <div className="edit-and-delete">
                                     <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
                                     <div onClick={() => dispatch(removeSpot(spot.id))} className="delete-link">Delete</div>

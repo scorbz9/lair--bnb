@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
@@ -37,13 +37,16 @@ function App() {
             <HostFormPage />
           </Route>
           <Route exact path="/spots">
-            <SpotsPage mySpots={false}/>
+            <SpotsPage allSpots={true}/>
           </Route>
           <Route exact path="/users/:userId/spots">
-            <SpotsPage mySpots={true} />
+            <SpotsPage allSpots={false} />
           </Route>
           <Route path="/spots/:spotId/edit">
             <EditSpotFormPage />
+          </Route>
+          <Route>
+            <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
           </Route>
         </Switch>
       <Footer />

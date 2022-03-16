@@ -13,3 +13,16 @@ a, a:hover, a:visited, a:active {
 a:visited {
     color: inherit;
 }
+
+.bad-url-catch-header {
+    width: 560px;
+    margin: 335px auto;
+}
+
+.bad-url-home-link {
+    color: #8b0000 !important;
+}
+
+.bad-url-home-link:hover {
+    text-decoration: underline;
+}
