@@ -84,7 +84,7 @@ function EditSpotFormPage() {
                 <h2 className="host-form-header">Edit your spot!</h2>
                 <p className="error">{addressError}</p>
                 <label className="section">
-                    Address
+                    Address*
                     <input
                         type="text"
                         value={address}
@@ -95,7 +95,7 @@ function EditSpotFormPage() {
                 </label>
                 <p className="error">{descriptionError}</p>
                 <label className="section">
-                    Description
+                    Description*
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -106,7 +106,7 @@ function EditSpotFormPage() {
                 </label>
                 <p className="error">{pricePerNightError}</p>
                 <label className="section">
-                    Price Per Night
+                    Price Per Night*
                     <input
                         type="text"
                         value={pricePerNight}

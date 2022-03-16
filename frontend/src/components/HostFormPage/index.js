@@ -23,6 +23,8 @@ function HostFormPage() {
   const [wifi, setWifi] = useState(false);
   const [parking, setParking] = useState(false);
   const [kitchen, setKitchen] = useState(false);
+  const [image, setImage] = useState(null)
+
   const [addressError, setAddressError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');
   const [pricePerNightError, setPricePerNightError] = useState('');
@@ -49,7 +51,8 @@ function HostFormPage() {
       smokeAlarm,
       wifi,
       parking,
-      kitchen
+      kitchen,
+      image
     }
 
     if (address.length === 0) setAddressError('Please provide an address.')
@@ -61,8 +64,12 @@ function HostFormPage() {
     if (newSpot) {
       history.push(`/spots`)
     }
-
   }
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
 
   return (
     <div className="host-form-container">
@@ -70,7 +77,7 @@ function HostFormPage() {
         <h2 className="host-form-header">Add your spot!</h2>
         <p className="error">{addressError}</p>
         <label className="section">
-          Address
+          Address*
           <input
             type="text"
             value={address}
@@ -81,7 +88,7 @@ function HostFormPage() {
         </label>
         <p className="error">{descriptionError}</p>
         <label className="section">
-          Description
+          Description*
           <textarea
             // type="text"
             value={description}
@@ -93,7 +100,7 @@ function HostFormPage() {
         </label>
         <p className="error">{pricePerNightError}</p>
         <label className="section">
-          Price Per Night
+          Price Per Night*
           <input
             type="text"
             value={pricePerNight}
@@ -216,6 +223,9 @@ function HostFormPage() {
             />
           </li>
         </ul>
+        <label> Upload a photo
+          <input type="file" onChange={updateFile} />
+        </label>
         <button type="submit" id="register-button">Add your spot</button>
       </form>
     </div>
