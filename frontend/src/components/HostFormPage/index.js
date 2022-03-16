@@ -65,155 +65,160 @@ function HostFormPage() {
   }
 
   return (
-    <form className="host-form" onSubmit={handleSubmit}>
-      <div id="error-section">
+    <div className="host-form-container">
+      <form className="host-form" onSubmit={handleSubmit}>
+        <h2 className="host-form-header">Add your spot!</h2>
         <p className="error">{addressError}</p>
+        <label className="section">
+          Address
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            className="host-form-text-input"
+            autoComplete='off'
+          />
+        </label>
         <p className="error">{descriptionError}</p>
+        <label className="section">
+          Description
+          <textarea
+            // type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            id="description-input"
+            className="host-form-text-input"
+            autoComplete='off'
+          />
+        </label>
         <p className="error">{pricePerNightError}</p>
-      </div>
-
-      <label className="section">
-        Address
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-
-        />
-      </label>
-      <label className="section">
-        Description
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          id="description-input"
-        />
-      </label>
-      <label className="section">
-        Price Per Night
-        <input
-          type="text"
-          value={pricePerNight}
-          onChange={(e) => setPricePerNight(e.target.value)}
-          id="price-input"
-        />
-      </label>
-      <ul id="amenities">
-        <h2 id="amenities-label">Amenities</h2>
-        <li className="amenity">
-          <label htmlFor="hairDryer">Hair Dryer</label>
+        <label className="section">
+          Price Per Night
           <input
-            name="hairDryer"
-            type="checkbox"
-            value={hairDryer}
-            onChange={(e) => setHairDryer(e.target.checked)}
-            className="checkbox"
+            type="text"
+            value={pricePerNight}
+            onChange={(e) => setPricePerNight(e.target.value)}
+            id="price-input"
+            className="host-form-text-input"
+            autoComplete='off'
           />
-        </li>
-        <li className="amenity">
-          <label htmlFor="hotWater">Hot Water</label>
-          <input
-            name="hotWater"
-            type="checkbox"
-            value={hotWater}
-            onChange={(e) => setHotWater(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="hangers">Hangers</label>
-          <input
-            name="hangers"
-            type="checkbox"
-            value={hangers}
-            onChange={(e) => setHangers(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="bedLinens">Bed Linens</label>
-          <input
-            name="bedLinens"
-            type="checkbox"
-            value={bedLinens}
-            onChange={(e) => setBedLinens(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="iron">Iron</label>
-          <input
-            name="iron"
-            type="checkbox"
-            value={iron}
-            onChange={(e) => setIron(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="tv">TV</label>
-          <input
-            name="tv"
-            type="checkbox"
-            value={tv}
-            onChange={(e) => setTv(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="heating">Heating</label>
-          <input
-            name="heating"
-            type="checkbox"
-            value={heating}
-            onChange={(e) => setHeating(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="smokeAlarm">Smoke Alarm</label>
-          <input
-            name="smokeAlarm"
-            type="checkbox"
-            value={smokeAlarm}
-            onChange={(e) => setSmokeAlarm(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="wifi">Wifi</label>
-          <input
-            name="wifi"
-            type="checkbox"
-            value={wifi}
-            onChange={(e) => setWifi(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="parking">Parking</label>
-          <input
-            name="parking"
-            type="checkbox"
-            value={parking}
-            onChange={(e) => setParking(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-        <li className="amenity">
-          <label htmlFor="kitchen">Kitchen</label>
-          <input
-            name="kitchen"
-            type="checkbox"
-            value={kitchen}
-            onChange={(e) => setKitchen(e.target.checked)}
-            className="checkbox"
-          />
-        </li>
-      </ul>
-      <button type="submit" id="register-button">Add your spot</button>
-    </form>
+        </label>
+          <h2 id="amenities-label">Amenities</h2>
+        <ul id="amenities">
+          <li className="amenity">
+            <label htmlFor="hairDryer">Hair Dryer</label>
+            <input
+              name="hairDryer"
+              type="checkbox"
+              value={hairDryer}
+              onChange={(e) => setHairDryer(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="hotWater">Hot Water</label>
+            <input
+              name="hotWater"
+              type="checkbox"
+              value={hotWater}
+              onChange={(e) => setHotWater(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="hangers">Hangers</label>
+            <input
+              name="hangers"
+              type="checkbox"
+              value={hangers}
+              onChange={(e) => setHangers(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="bedLinens">Bed Linens</label>
+            <input
+              name="bedLinens"
+              type="checkbox"
+              value={bedLinens}
+              onChange={(e) => setBedLinens(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="iron">Iron</label>
+            <input
+              name="iron"
+              type="checkbox"
+              value={iron}
+              onChange={(e) => setIron(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="tv">TV</label>
+            <input
+              name="tv"
+              type="checkbox"
+              value={tv}
+              onChange={(e) => setTv(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="heating">Heating</label>
+            <input
+              name="heating"
+              type="checkbox"
+              value={heating}
+              onChange={(e) => setHeating(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="smokeAlarm">Smoke Alarm</label>
+            <input
+              name="smokeAlarm"
+              type="checkbox"
+              value={smokeAlarm}
+              onChange={(e) => setSmokeAlarm(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="wifi">Wifi</label>
+            <input
+              name="wifi"
+              type="checkbox"
+              value={wifi}
+              onChange={(e) => setWifi(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="parking">Parking</label>
+            <input
+              name="parking"
+              type="checkbox"
+              value={parking}
+              onChange={(e) => setParking(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+          <li className="amenity">
+            <label htmlFor="kitchen">Kitchen</label>
+            <input
+              name="kitchen"
+              type="checkbox"
+              value={kitchen}
+              onChange={(e) => setKitchen(e.target.checked)}
+              className="checkbox"
+            />
+          </li>
+        </ul>
+        <button type="submit" id="register-button">Add your spot</button>
+      </form>
+    </div>
   );
 }
 
