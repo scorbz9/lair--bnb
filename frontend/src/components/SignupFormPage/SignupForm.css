@@ -9,35 +9,73 @@ form {
 }
 
 #signup-form {
-    margin-top: 60px;
+    margin: 0 auto;
+    width: 80%;
 }
 
-form input {
+#signup-form h6 {
+    padding: 0;
+    margin: 0;
+}
+
+.signup-form-input {
     margin: 5px 0px;
     width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.25);
+    height: 55px;
+    padding-left: 8px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
 
 #sign-up-container {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    width: 200px;
-    height: 725px;
+    width: 460px;
+    margin: 120px auto 115px auto;
+    background-color: rgba(136, 0, 0, 0.2);
+    border-radius: 10px;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-timing-function: ease-in;
+    animation-duration: .7s;
 }
 
-#sign-up-container button {
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.signup-form-button {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: transparent;
     text-decoration: none;
     padding: 8px 12px;
     margin: 5px 0px;
     display: inline-block;
-    font-size: 10x;
     background-color: #88404d;
     color: whitesmoke;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
 }
 
 #sign-up-container button:hover {
     background-color: #68323b;
+}
+
+#signup-submit {
+    margin: 10px 0;
+}
+
+#demo-link {
+    margin-bottom: 30px;
 }
