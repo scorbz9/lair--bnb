@@ -23,7 +23,6 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
         <Switch>
           <Route exact path="/">
             <SplashPage />
@@ -44,7 +43,6 @@ function App() {
             <EditSpotFormPage />
           </Route>
         </Switch>
-      )}
       <Footer />
     </>
   );
