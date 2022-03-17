@@ -4,6 +4,8 @@ const { User, Spot, Image, Amenity } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3.js')
+
 const router = express.Router();
 
 const imgURLs = [
@@ -62,6 +64,7 @@ const postSpotValidations = [
 
 router.post(
     '/',
+    singleMulterUpload("image"),
     postSpotValidations,
     asyncHandler(async (req, res, next) => {
         const {
@@ -86,7 +89,10 @@ router.post(
 
         // Gets random spooky house picture url from list
         const randomIndex = Math.floor(getRandomArbitrary(0, imgURLs.length));
-        const imgURL = imgURLs[randomIndex];
+        let imgURL = imgURLs[randomIndex]
+        if (req.file !== undefined) {
+            imgURL = await singlePublicFileUpload(req.file);
+        }
 
         const newSpot = await Spot.create({
             userId,

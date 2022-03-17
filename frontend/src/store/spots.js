@@ -40,11 +40,24 @@ export const getUserSpots = (userId) => async dispatch => {
 }
 
 export const createSpot = (payload) => async dispatch => {
+     const formData = new FormData();
+
+     for (let key in payload) {
+        if (key === "image" && payload[key] === null) {
+
+        } else {
+            formData.append(`${key}`, payload[key])
+        }
+     }
+
     const response = await csrfFetch('/api/spots', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        method: "POST",
+        headers: {
+        "Content-Type": "multipart/form-data",
+        },
+        body: formData,
     });
+
     const spot = await response.json();
 
     dispatch(addOneSpot(spot))
