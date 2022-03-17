@@ -50,7 +50,7 @@ export const createSpot = (payload) => async dispatch => {
         }
      }
 
-    const response = await csrfFetch('/api/spots', {
+    const response = await csrfFetch('/api/spots/', {
         method: "POST",
         headers: {
         "Content-Type": "multipart/form-data",
@@ -65,7 +65,7 @@ export const createSpot = (payload) => async dispatch => {
 }
 
 export const editSpot = (payload) => async dispatch => {
-    const response = await csrfFetch('/api/spots', {
+    const response = await csrfFetch('/api/spots/', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -79,7 +79,7 @@ export const editSpot = (payload) => async dispatch => {
 
 export const removeSpot = payload => async dispatch => {
     payload = { spotId: payload }
-    const response = await csrfFetch('/api/spots', {
+    const response = await csrfFetch('/api/spots/', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
