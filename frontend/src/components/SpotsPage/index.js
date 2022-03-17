@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { removeSpot } from '../../store/spots';
 
+import SpotMap from './SpotMap';
 
 import { getSpots } from '../../store/spots';
 
@@ -25,6 +26,21 @@ function SpotsPage({ allSpots }) {
         spots = spots.filter(spot => spot.userId === userId)
     }
 
+    const [currentMapSpotIndex, setCurrentMapSpotIndex] = useState(0)
+
+    const updateMap = (index) => {
+        setCurrentMapSpotIndex(index)
+    }
+
+    const handleDelete = (spotId) => {
+        setCurrentMapSpotIndex(0)
+        dispatch(removeSpot(spotId))
+    }
+
+    const handleOpenDescription = () => {
+
+    }
+
     if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
 
     return (
@@ -34,7 +50,7 @@ function SpotsPage({ allSpots }) {
                     : !allSpots && sessionUser?.id === userId ? <p id="lead-in">View the spots you host...</p>
                     : <p id="lead-in">View this user's spots...</p>
                 }
-                {spots.map((spot) => {
+                {spots.map((spot, index) => {
                     let currentSpotAmenities = spot.Amenities[0];
                     let sampleAmenities = [];
 
@@ -53,9 +69,9 @@ function SpotsPage({ allSpots }) {
 
                     return (
                         <div key={`${spot.id}`} className="spot-container">
-                                <img className="spot-image" src={`${spot.Images[0].imgURL}`} alt="Lair"></img>
+                                <img onClick={() => updateMap(index)} className="spot-image" src={`${spot.Images[0].imgURL}`} alt="Lair"></img>
                                 <div className="spot-info-container">
-                                    <h3 className="spot-address">{`${spot.address}`}</h3>
+                                    <h3 onClick={() => updateMap(index)} className="spot-address">{`${spot.address}`}</h3>
                                     <ul className="spot-amenity-preview">
                                         {sampleAmenities.map((amenity) => {
                                             return (
@@ -64,6 +80,9 @@ function SpotsPage({ allSpots }) {
                                         })
                                         }
                                     </ul>
+                                    <div className="spot-description">
+                                        {spot.description}
+                                    </div>
                                 </div>
 
                                     <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
@@ -71,7 +90,7 @@ function SpotsPage({ allSpots }) {
                             {sessionUser?.id === spot.userId ?
                                 <div className="edit-and-delete">
                                     <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
-                                    <div onClick={() => dispatch(removeSpot(spot.id))} className="delete-link">Delete</div>
+                                    <div onClick={() => handleDelete(spot.id)} className="delete-link">Delete</div>
                                 </div>
                             : <></>}
                         </div>
@@ -79,6 +98,7 @@ function SpotsPage({ allSpots }) {
                 })
                 }
             </div>
+            <SpotMap currentMapSpotIndex={currentMapSpotIndex} setCurrentMapSpotIndex={setCurrentMapSpotIndex} spots={spots}/>
         </div>
     )
 }

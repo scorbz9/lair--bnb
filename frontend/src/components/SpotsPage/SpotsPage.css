@@ -1,11 +1,20 @@
+#my-spots-container {
+    display: flex;
+
+}
+
 #spot-list-container {
     position: relative;
-    margin: 60px auto 0px auto;
     display: flex;
     flex-direction: column;
-    width: 750px;
+    width: 900px;
+    height: 83.3vh;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     z-index: 1;
+    overflow-y: scroll;
+    margin-top: 85px;
+    margin-left: 80px;
+    padding: 0 15px;
 }
 
 .spot-container {
@@ -31,12 +40,14 @@
     font-size: 24px;
     font-weight: bold;
     letter-spacing: 1.5px;
+    margin: 0px 0 24px 0;
 }
 
 .spot-image {
     width: 200px;
     height: 200px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+    cursor: pointer;
 }
 
 .spot-info-container {
@@ -50,6 +61,26 @@
     color: black;
     font-size: 25px;
     margin: 10px 0px;
+    cursor: pointer;
+    width: 440px;
+}
+
+.spot-description {
+    /* width: 420px; */
+    text-align: left;
+    margin: 10px 30px 30px 20px;
+    line-height: 125%;
+}
+
+#read-more-button {
+    color: blue;
+    cursor: pointer;
+    text-align: right;
+    margin: 5px 0 0 0;
+}
+
+#read-more-button:hover {
+    text-decoration: underline;
 }
 
 .spot-price {
