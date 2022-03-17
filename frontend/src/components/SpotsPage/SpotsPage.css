@@ -62,8 +62,25 @@
     font-size: 25px;
     margin: 10px 0px;
     cursor: pointer;
-    /* text-align: left; */
     width: 440px;
+}
+
+.spot-description {
+    /* width: 420px; */
+    text-align: left;
+    margin: 10px 30px 30px 20px;
+    line-height: 125%;
+}
+
+#read-more-button {
+    color: blue;
+    cursor: pointer;
+    text-align: right;
+    margin: 5px 0 0 0;
+}
+
+#read-more-button:hover {
+    text-decoration: underline;
 }
 
 .spot-price {

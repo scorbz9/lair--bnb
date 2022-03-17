@@ -37,8 +37,11 @@ function SpotsPage({ allSpots }) {
         dispatch(removeSpot(spotId))
     }
 
-    if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
+    const handleOpenDescription = () => {
 
+    }
+
+    if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
 
     return (
         <div id="my-spots-container">
@@ -77,6 +80,9 @@ function SpotsPage({ allSpots }) {
                                         })
                                         }
                                     </ul>
+                                    <div className="spot-description">
+                                        {spot.description}
+                                    </div>
                                 </div>
 
                                     <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
