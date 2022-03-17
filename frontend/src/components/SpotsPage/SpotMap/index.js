@@ -4,14 +4,14 @@ import './SpotMap.css'
 
 let environment = process.env.REACT_APP_GOOGLE_MAP
 
-const SpotMap = ({ currentMapSpotIndex, setCurrentMapSpotIndex, spots }) => {
+const SpotMap = ({ currentMapSpotIndex, spots }) => {
 
     return (
         <iframe
             className='embed-map'
             title='location-map'
-            src={`https://www.google.com/maps/embed/v1/place?key=${environment}
-            &q=${spots[currentMapSpotIndex]['address']}}`}>
+            src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_MAP}
+            &q=${spots[currentMapSpotIndex]['address']}`}>
         </iframe>
     )
 }
