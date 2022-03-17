@@ -6,6 +6,7 @@ Welcome to [Lairbnb](lair--bnb.herokuapp.com), a clone of Airbnb where users can
 
 ### Key Functionality
  - Users can become hosts, allowing them to view, add, update, and delete their own spots
+ - Users can view spots on a map or get directions to a spot via Google Maps API integration
  - Users may utilize Lairbnb's AWS Integration to upload pictures along with their hosted spots
 
 ### Technologies Used
