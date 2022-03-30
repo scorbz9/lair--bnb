@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpots } from '../../store/spots';
 
-import splashImg1 from "../../img/lair--bnb_splash-img1.jpg"
-import splashImg2 from "../../img/lair--bnb_splash-img2.jpg"
-import splashImg4 from "../../img/lair--bnb_splash-img4.jpg"
+import splashImg1 from "../../img/lair--bnb_splash-img1_compress.jpg"
+import splashImg2 from "../../img/lair--bnb_splash-img2_compress.jpg"
+import splashImg4 from "../../img/lair--bnb_splash-img4_compress.jpg"
 
 import './SplashPage.css';
 import { Link } from 'react-router-dom';
