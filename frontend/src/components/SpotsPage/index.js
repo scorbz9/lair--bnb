@@ -37,9 +37,6 @@ function SpotsPage({ allSpots }) {
         dispatch(removeSpot(spotId))
     }
 
-    const handleOpenDescription = () => {
-
-    }
 
     if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
 

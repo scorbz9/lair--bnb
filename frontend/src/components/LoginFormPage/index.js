@@ -30,7 +30,7 @@ function LoginFormPage() {
     e.preventDefault();
     dispatch(sessionActions.demoUser());
 
-    history.push('/')
+    history.push('/spots')
   }
 
   return (

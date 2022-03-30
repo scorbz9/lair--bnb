@@ -1,6 +1,6 @@
 .embed-map {
-
-    width: 600px;
+    min-width: 30vw;
     margin-right: 80px;
     margin-left: 80px;
+    display: block;
 }
