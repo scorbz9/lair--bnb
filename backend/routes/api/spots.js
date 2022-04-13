@@ -137,6 +137,7 @@ router.post(
 
 router.put(
     '/',
+    singleMulterUpload("image"),
     postSpotValidations,
     asyncHandler(async (req, res, next) => {
         const {
@@ -155,8 +156,10 @@ router.put(
             wifi,
             parking,
             kitchen,
-            spotId
+            spotId,
+            image
         } = req.body;
+
 
         const spot = await Spot.findByPk(spotId, {
             include: [Image, Amenity]
@@ -166,8 +169,20 @@ router.put(
             where: { spotId }
         })
 
+        const imageToUpdate = await Image.findOne({
+            where: { spotId }
+        })
+
+        let imgURL;
+        if (req.file !== undefined) {
+            imgURL = await singlePublicFileUpload(req.file);
+        }
+
+        console.log(imageToUpdate)
+
         await amenity.update(req.body)
         await spot.update(req.body);
+        await imageToUpdate.update({ imgURL })
 
         const updatedSpot = await Spot.findByPk(spotId, {
             include: [Image, Amenity]
