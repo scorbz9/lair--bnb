@@ -65,10 +65,20 @@ export const createSpot = (payload) => async dispatch => {
 }
 
 export const editSpot = (payload) => async dispatch => {
+    const formData = new FormData();
+
+    for (let key in payload) {
+       if (key === "image" && payload[key] === null) {
+
+       } else {
+           formData.append(`${key}`, payload[key])
+       }
+    }
+
     const response = await csrfFetch('/api/spots/', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        headers: { "Content-Type": "multipart/form-data" },
+        body: formData
     });
 
     const spot = await response.json();

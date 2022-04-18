@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { removeSpot } from '../../store/spots';
 
 import SpotMap from './SpotMap';
+import ConfirmDelete from '../ConfirmDelete';
+import BookingsForm from '../BookingsForm';
 
 import { getSpots } from '../../store/spots';
+import { removeSpot } from '../../store/spots';
 
 import './SpotsPage.css';
 
@@ -27,6 +29,7 @@ function SpotsPage({ allSpots }) {
     }
 
     const [currentMapSpotIndex, setCurrentMapSpotIndex] = useState(0)
+    const [showConfirmDelete, setShowConfirmDelete] = useState(null)
 
     const updateMap = (index) => {
         setCurrentMapSpotIndex(index)
@@ -35,13 +38,20 @@ function SpotsPage({ allSpots }) {
     const handleDelete = (spotId) => {
         setCurrentMapSpotIndex(0)
         dispatch(removeSpot(spotId))
+        setShowConfirmDelete(null)
     }
 
+
+    const toggleConfirmDelete = (spotId) => {
+        setShowConfirmDelete(spotId)
+    }
 
     if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
 
     return (
         <div id="my-spots-container">
+
+            <ConfirmDelete showConfirmDelete={showConfirmDelete} setShowConfirmDelete={setShowConfirmDelete} handleDelete={handleDelete} />
             <div id="spot-list-container">
                 { allSpots ? <p id="lead-in">View all available spots...</p>
                     : !allSpots && sessionUser?.id === userId ? <p id="lead-in">View the spots you host...</p>
@@ -87,7 +97,7 @@ function SpotsPage({ allSpots }) {
                             {sessionUser?.id === spot.userId ?
                                 <div className="edit-and-delete">
                                     <Link to={`/spots/${spot.id}/edit`} className="edit-link">Edit</Link>
-                                    <div onClick={() => handleDelete(spot.id)} className="delete-link">Delete</div>
+                                    <div onClick={() => toggleConfirmDelete(spot.id)} className="delete-link">Delete</div>
                                 </div>
                             : <></>}
                         </div>
@@ -96,6 +106,7 @@ function SpotsPage({ allSpots }) {
                 }
             </div>
             <SpotMap currentMapSpotIndex={currentMapSpotIndex} setCurrentMapSpotIndex={setCurrentMapSpotIndex} spots={spots}/>
+
         </div>
     )
 }
