@@ -1,9 +1,9 @@
 import { csrfFetch } from './csrf';
 
 const LOAD = 'spots/LOAD'
-const ADD_ONE = 'spots/ADD_ONE';
-const EDIT_ONE = 'spots/EDIT_ONE'
-const REMOVE_ONE = 'spots/REMOVE_ONE'
+const ADD_SPOT = 'spots/ADD_SPOT';
+const EDIT_SPOT = 'spots/EDIT_SPOT'
+const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 const load = (list) => ({
     type: LOAD,
@@ -11,17 +11,17 @@ const load = (list) => ({
 });
 
 const addOneSpot = spot => ({
-    type: ADD_ONE,
+    type: ADD_SPOT,
     spot
 })
 
 const editOneSpot = spot => ({
-    type: EDIT_ONE,
+    type: EDIT_SPOT,
     spot
 })
 
 const removeOneSpot = spotId => ({
-    type: REMOVE_ONE,
+    type: DELETE_SPOT,
     spotId
 })
 
@@ -112,13 +112,13 @@ const spotReducer = (state = initialState, action) => {
                 entries: [...action.list]
             };
         }
-        case ADD_ONE: {
+        case ADD_SPOT: {
             console.log(action.spot)
             const newState = {...state}
 
             return { ...newState, entries: [...newState.entries, action.spot]}
         }
-        case EDIT_ONE: {
+        case EDIT_SPOT: {
             const newState = { ...state };
 
             const spotToEditId = action.spot.id;
@@ -129,7 +129,7 @@ const spotReducer = (state = initialState, action) => {
 
             return {...newState, entries: newState.entries };
         }
-        case REMOVE_ONE: {
+        case DELETE_SPOT: {
             const newState = { ...state };
 
             const spotToDelete = newState.entries.find(spot => spot.id === action.spotId)
