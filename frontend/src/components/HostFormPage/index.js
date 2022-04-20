@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createSpot } from '../../store/spots'
+import BookingsForm from '../BookingsForm';
 import './HostForm.css';
 
 function HostFormPage() {
@@ -23,7 +24,7 @@ function HostFormPage() {
   const [wifi, setWifi] = useState(false);
   const [parking, setParking] = useState(false);
   const [kitchen, setKitchen] = useState(false);
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState(null);
 
   const [addressError, setAddressError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');
@@ -233,6 +234,7 @@ function HostFormPage() {
             {image ? <div id="staged-upload">{image.name}</div> : <div id="staged-upload">No file chosen</div>}
         <button type="submit" id="register-button">Add your spot</button>
       </form>
+      <BookingsForm />
     </div>
   );
 }

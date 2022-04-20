@@ -61,6 +61,8 @@
     margin: 10px 0px;
     cursor: pointer;
     width: 440px;
+    display: flex;
+    justify-content: center;
 }
 
 .spot-description {

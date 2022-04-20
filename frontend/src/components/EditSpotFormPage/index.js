@@ -35,6 +35,7 @@ function EditSpotFormPage() {
     const [wifi, setWifi] = useState(spot?.Amenities[0].wifi);
     const [parking, setParking] = useState(spot?.Amenities[0].parking);
     const [kitchen, setKitchen] = useState(spot?.Amenities[0].kitchen);
+    const [image, setImage] = useState(spot?.Images[0].imgURL)
 
     const [addressError, setAddressError] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
@@ -63,7 +64,8 @@ function EditSpotFormPage() {
             wifi,
             parking,
             kitchen,
-            spotId
+            spotId,
+            image
         }
 
         if (address.length === 0) setAddressError('Please provide an address.')
@@ -75,8 +77,12 @@ function EditSpotFormPage() {
         if (newSpot) {
             history.push(`/spots`)
         }
-
     }
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+      };
 
     return (
         <div className="host-form-container">
@@ -229,6 +235,14 @@ function EditSpotFormPage() {
                         />
                     </li>
                 </ul>
+                <h2 id="amenities-label">Upload a photo</h2>
+          <label htmlFor="upload-photo-button" className="section" id="upload-photo">Choose a file</label>
+            <input
+              type="file"
+              onChange={updateFile}
+              id="upload-photo-button"
+            />
+            {image ? <div id="staged-upload">{image.name}</div> : <div id="staged-upload">No file chosen</div>}
                 <button type="submit" id="register-button">Edit your spot</button>
             </form>
         </div>
