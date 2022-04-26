@@ -40,12 +40,19 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
             })
     }
 
-    // Function to pass to calendar to make already-booked dates unselectable
+    // Function to pass to calendar to make already-booked/previous dates unselectable
     const handleAlreadyBooked = date => {
+        const today = new Date().setHours(0, 0, 0, 0);
+
+        // Makes date tiles that are before the current date unselectable
+        if (date.date.getTime() < today) {
+            return true;
+        }
+
+        // Check each date tile to see if it is within a date range that is already booked
         for (let i = 0; i < spot.Bookings.length; i++) {
             let booking = spot.Bookings[i];
-            // Check each date tile to see if it is within a date range that is already booked
-            if (new Date(booking.startDate).getTime() <= new Date(date.date).getTime() && new Date(booking.endDate) >= new Date(date.date).getTime()) {
+            if (new Date(booking.startDate).getTime() <= date.date.getTime() && new Date(booking.endDate) >= date.date.getTime()) {
                 return true;
             }
         }
