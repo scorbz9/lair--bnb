@@ -41,9 +41,15 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
     }
 
     // Function to pass to calendar to make already-booked dates unselectable
-    // TODO
-    const handleAlreadyBooked = () => {
-        return 1;
+    const handleAlreadyBooked = date => {
+        for (let i = 0; i < spot.Bookings.length; i++) {
+            let booking = spot.Bookings[i];
+            // Check each date tile to see if it is within a date range that is already booked
+            if (new Date(booking.startDate).getTime() <= new Date(date.date).getTime() && new Date(booking.endDate) >= new Date(date.date).getTime()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     return (
@@ -64,6 +70,7 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
                         onChange={setDateRange}
                         minDetail={"year"}
                         selectRange={true}
+                        tileDisabled={handleAlreadyBooked}
                         id="bookings-form__calendar-input"
                     />
                     <button type="submit" className="bookings-form-submit">Reserve</button>

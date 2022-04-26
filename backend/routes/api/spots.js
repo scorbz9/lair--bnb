@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { User, Spot, Image, Amenity } = require('../../db/models');
+const { User, Spot, Image, Amenity, Booking } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -39,7 +39,7 @@ router.get(
     '/',
     asyncHandler(async (req, res, next) => {
         const spots = await Spot.findAll({
-            include: [Image, Amenity],
+            include: [Image, Amenity, Booking],
             order: [
                 ['id', "ASC"]
             ]

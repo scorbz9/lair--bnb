@@ -6,7 +6,19 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-// TODO
+router.get(
+    `/`,
+    asyncHandler(async (req, res) => {
+        const bookings = await Booking.findAll({
+            order: [
+                ['createdAt', 'ASC']
+            ]
+        })
+
+        return res.json(bookings)
+    })
+)
+
 const postBookingValidations = [
     check('dateRange')
         .exists({ checkFalsy: true })

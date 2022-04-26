@@ -25,11 +25,11 @@ const deleteOneBooking = payload => ({
     payload
 })
 
-export const getUserBookings = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/users/${userId}/bookings`)
+export const getBookings = () => async dispatch => {
+    const response = await csrfFetch(`/api/bookings`)
 
-    const bookings = response.json();
-    console.log(bookings)
+    const bookings = await response.json();
+
     dispatch(loadAllBookings(bookings))
 }
 

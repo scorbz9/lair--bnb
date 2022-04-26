@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch, Link } from "react-router-dom";
+
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
-import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./components/SplashPage"
 import HostFormPage from "./components/HostFormPage";
 import SpotsPage from "./components/SpotsPage";
 import EditSpotFormPage from "./components/EditSpotFormPage";
 import Footer from "./components/Footer";
+
+import * as sessionActions from "./store/session";
 import { getSpots } from "./store/spots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(getSpots())
+
+  useEffect(async () => {
+    await Promise.all([
+      dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true)),
+      dispatch(getSpots()),
+    ])
   }, [dispatch]);
 
   return (
