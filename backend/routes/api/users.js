@@ -5,7 +5,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Spot, Image, Amenity } = require('../../db/models');
+const { User, Spot, Image, Amenity, Booking } = require('../../db/models');
 
 const router = express.Router();
 
@@ -60,6 +60,19 @@ router.get(
     })
 )
 
+router.get(
+    `/:userId/bookings`,
+    asyncHandler(async (req, res) => {
+        const userId = parseInt(req.params.userId, 10)
+        const bookings = await Booking.findAll({
+            where: { userId },
+            order: [
+                ['createdAt', 'ASC']
+            ]
+        })
 
+        res.json(bookings)
+    })
+)
 
 module.exports = router;
