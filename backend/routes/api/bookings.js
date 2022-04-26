@@ -11,7 +11,7 @@ const postBookingValidations = [
     check('dateRange')
         .exists({ checkFalsy: true })
         .withMessage('Please select a date range.'),
-        handleValidationErrors
+    handleValidationErrors
 ]
 
 router.post(
@@ -26,7 +26,7 @@ router.post(
             userId,
             spotId
         })
-
+        console.log(newBooking)
         return res.json(newBooking)
 
     })
