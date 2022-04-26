@@ -82,12 +82,13 @@
     text-decoration: underline;
 }
 
-.spot-price {
+.spot-bookings-link {
     text-align: right;
     position: absolute;
     bottom: 0;
     right: 0;
     color: grey;
+    cursor: pointer;
 }
 
 .spot-amenity-preview {

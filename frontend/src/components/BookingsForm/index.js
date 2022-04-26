@@ -1,26 +1,43 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Calendar from 'react-calendar';
+
+import { createBooking } from '../../store/bookings';
 
 import './BookingsForm.css'
 import 'react-calendar/dist/Calendar.css';
 
-const BookingsForm = () => {
-    const userId = useSelector(state => state.session.user.id)
+const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
+    const dispatch = useDispatch();
+    const spot = useSelector(state => state.spotsState.entries)
+        .find(spot => spot.id === showBookingsForm)
 
-    const [dateRange, setDateRange] = useState()
+    const [dateRange, setDateRange] = useState(null);
+    const [errors, setErrors] = useState([])
+
+    const handleCancel = () => {
+        setShowBookingsForm(null)
+        setDateRange(null)
+        setErrors([])
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setErrors([])
 
         const payload = {
-            startDate: dateRange[0],
-            endDate: dateRange[1],
+            dateRange,
+            spotId: showBookingsForm,
             userId
         }
-
         console.log(payload)
+
+        await dispatch(createBooking(payload))
+            .catch(async (res) => {
+                const data = await res.json()
+                if (data.errors) setErrors(data.errors)
+            })
     }
 
     // Function to pass to calendar to make already-booked dates unselectable
@@ -30,19 +47,30 @@ const BookingsForm = () => {
     }
 
     return (
+        showBookingsForm ?
         <div className="overlay-wrapper">
             <div className="bookings-form-container">
+                <h2>
+                    Make a reservation for: {spot.address}
+                </h2>
                 <form onSubmit={handleSubmit}>
+                    <label htmlFor="bookings-form__calendar-input">
+                        {errors.map((error, index) => {
+                            return <div key={index}>{error}</div>
+                        })}
+                    </label>
                     <Calendar
                         value={dateRange}
                         onChange={setDateRange}
                         minDetail={"year"}
                         selectRange={true}
+                        id="bookings-form__calendar-input"
                     />
                     <button type="submit" className="bookings-form-submit">Reserve</button>
+                    <button onClick={handleCancel}>Cancel</button>
                 </form>
             </div>
-        </div>
+        </div> : <></>
     )
 }
 
