@@ -20,16 +20,17 @@ function SpotsPage({ allSpots }) {
       }, [dispatch]);
 
     const sessionUser = useSelector(state => state.session.user);
-    const userId = parseInt(useParams().userId, 10)
+    const spotsHostId = parseInt(useParams().userId, 10)
 
     let spots = useSelector(state => state.spotsState.entries);
 
     if (!allSpots) {
-        spots = spots.filter(spot => spot.userId === userId)
+        spots = spots.filter(spot => spot.userId === spotsHostId)
     }
 
     const [currentMapSpotIndex, setCurrentMapSpotIndex] = useState(0)
     const [showConfirmDelete, setShowConfirmDelete] = useState(null)
+    const [showBookingsForm, setShowBookingsForm] = useState(null)
 
     const updateMap = (index) => {
         setCurrentMapSpotIndex(index)
@@ -46,15 +47,19 @@ function SpotsPage({ allSpots }) {
         setShowConfirmDelete(spotId)
     }
 
+    const toggleBookingsForm = spotId => {
+        setShowBookingsForm(spotId)
+    }
+
     if (!spots.length) return <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>
 
     return (
         <div id="my-spots-container">
-
+            <BookingsForm showBookingsForm={showBookingsForm} setShowBookingsForm={setShowBookingsForm} userId={sessionUser?.id} />
             <ConfirmDelete showConfirmDelete={showConfirmDelete} setShowConfirmDelete={setShowConfirmDelete} handleDelete={handleDelete} />
             <div id="spot-list-container">
                 { allSpots ? <p id="lead-in">View all available spots...</p>
-                    : !allSpots && sessionUser?.id === userId ? <p id="lead-in">View the spots you host...</p>
+                    : !allSpots && sessionUser?.id === spotsHostId ? <p id="lead-in">View the spots you host...</p>
                     : <p id="lead-in">View this user's spots...</p>
                 }
                 {spots.map((spot, index) => {
@@ -92,7 +97,7 @@ function SpotsPage({ allSpots }) {
                                     </div>
                                 </div>
 
-                                    <p className="spot-price">{`$${spot.pricePerNight} / night`}</p>
+                                    <p onClick={() => toggleBookingsForm(spot.id)} className="spot-bookings-link">Book this Spot</p>
 
                             {sessionUser?.id === spot.userId ?
                                 <div className="edit-and-delete">

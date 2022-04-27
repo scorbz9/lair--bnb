@@ -25,23 +25,23 @@ const deleteOneBooking = payload => ({
     payload
 })
 
-export const getBookings = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/users/${userId}/bookings`)
+export const getBookings = () => async dispatch => {
+    const response = await csrfFetch(`/api/bookings`)
 
-    const bookings = response.json();
+    const bookings = await response.json();
 
     dispatch(loadAllBookings(bookings))
 }
 
-export const createBooking = (payload, userId) => async dispatch => {
-
-    const response = await csrfFetch(`/api/users/${userId}/bookings`, {
+export const createBooking = (payload) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/`, {
         method: "POST",
         headers: {
-        "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
-        body: payload,
+        body: JSON.stringify(payload),
     });
+    console.log('do i make it here!!!??')
 
     const booking = await response.json();
 
@@ -49,14 +49,14 @@ export const createBooking = (payload, userId) => async dispatch => {
     return booking;
 }
 
-export const editBooking = (payload, userId) => async dispatch => {
+export const editBooking = (payload) => async dispatch => {
 
-    const response = await csrfFetch(`/api/users/${userId}/bookings`, {
+    const response = await csrfFetch(`/api/bookings`, {
         method: "PUT",
         headers: {
         "Content-Type": "application/json",
         },
-        body: payload,
+        body: JSON.stringify(payload),
     });
 
     const updatedBooking = await response.json();
@@ -65,14 +65,14 @@ export const editBooking = (payload, userId) => async dispatch => {
     return updatedBooking;
 }
 
-export const deleteBooking = (bookingId, userId) => async dispatch => {
+export const deleteBooking = (payload) => async dispatch => {
 
-    const response = await csrfFetch(`/api/users/${userId}/bookings`, {
+    const response = await csrfFetch(`/api/bookings`, {
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",
         },
-        body: payload,
+        body: JSON.stringify(payload),
     });
 
     const bookingToDelete = await response.json();
@@ -86,7 +86,8 @@ const initialState = {
 const bookingsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_BOOKINGS: {
-            return {...state}
+            console.log(action)
+            return {...state, entries: [...action.payload ] }
         }
         case ADD_BOOKING: {
             return {...state}
