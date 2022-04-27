@@ -10,6 +10,7 @@ import HostFormPage from "./components/HostFormPage";
 import SpotsPage from "./components/SpotsPage";
 import EditSpotFormPage from "./components/EditSpotFormPage";
 import Footer from "./components/Footer";
+import BookingsPage from "./components/BookingsPage";
 
 import * as sessionActions from "./store/session";
 import { getSpots } from "./store/spots";
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route path="/spots/:spotId/edit">
             <EditSpotFormPage />
+          </Route>
+          <Route path="/bookings">
+            <BookingsPage />
           </Route>
           <Route>
             <h1 className="bad-url-catch-header">There's nothing here! <Link className="bad-url-home-link" to="/">Return to safety.</Link></h1>

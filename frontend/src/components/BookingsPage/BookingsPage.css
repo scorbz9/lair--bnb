@@ -1,0 +1,13 @@
+.bookings-page {
+    margin: 80px auto;
+    width: 80vw;
+    max-width: 62.5em;
+}
+
+.bookings-page__spot-image {
+    display: inline;
+}
+
+.bookings-page__spot-address {
+    display: inline;
+}

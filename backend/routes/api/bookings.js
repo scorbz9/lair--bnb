@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const { Booking } = require('../../db/models')
+const { Booking, Spot } = require('../../db/models')
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -10,8 +10,9 @@ router.get(
     `/`,
     asyncHandler(async (req, res) => {
         const bookings = await Booking.findAll({
+            include: [{ all: true, nested: true }],
             order: [
-                ['createdAt', 'ASC']
+                ['createdAt', 'ASC'],
             ]
         })
 
