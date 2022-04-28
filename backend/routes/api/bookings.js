@@ -39,8 +39,67 @@ router.post(
             userId,
             spotId
         })
-        console.log(newBooking)
-        return res.json(newBooking)
+
+        const bookings = await Booking.findAll({
+            include: [{ all: true, nested: true }],
+            order: [
+                ['createdAt', 'ASC'],
+            ]
+        })
+
+        return res.json(bookings)
+
+    })
+)
+
+router.put(
+    `/`,
+    postBookingValidations,
+    asyncHandler(async (req, res) => {
+        const { dateRange, spotId, userId, bookingId } = req.body;
+
+        const bookingToUpdate = await Booking.findOne({
+            where: { id: bookingId },
+            include: [{ all: true, nested: true }],
+        })
+
+        await bookingToUpdate.update({
+            startDate: dateRange[0],
+            endDate: dateRange[1],
+        })
+
+        const bookings = await Booking.findAll({
+            include: [{ all: true, nested: true }],
+            order: [
+                ['createdAt', 'ASC'],
+            ]
+        })
+
+        return res.json(bookings)
+
+    })
+)
+
+router.delete(
+    `/`,
+    asyncHandler(async (req, res) => {
+        const { dateRange, spotId, userId, bookingId } = req.body;
+
+        const bookingToDelete = await Booking.findOne({
+            where: { id: bookingId },
+            include: [{ all: true, nested: true }],
+        })
+
+        await bookingToDelete.destroy();
+
+        const bookings = await Booking.findAll({
+            include: [{ all: true, nested: true }],
+            order: [
+                ['createdAt', 'ASC'],
+            ]
+        })
+
+        return res.json(bookings)
 
     })
 )

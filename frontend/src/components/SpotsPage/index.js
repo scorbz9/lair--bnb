@@ -56,7 +56,7 @@ function SpotsPage({ allSpots }) {
     return (
         <div id="my-spots-container">
             <BookingsForm showBookingsForm={showBookingsForm} setShowBookingsForm={setShowBookingsForm} userId={sessionUser?.id} />
-            <ConfirmDelete showConfirmDelete={showConfirmDelete} setShowConfirmDelete={setShowConfirmDelete} handleDelete={handleDelete} />
+            <ConfirmDelete type={"Spot"} showConfirmDelete={showConfirmDelete} setShowConfirmDelete={setShowConfirmDelete} handleDelete={handleDelete} />
             <div id="spot-list-container">
                 { allSpots ? <p id="lead-in">View all available spots...</p>
                     : !allSpots && sessionUser?.id === spotsHostId ? <p id="lead-in">View the spots you host...</p>
