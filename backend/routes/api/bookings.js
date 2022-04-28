@@ -59,7 +59,7 @@ router.put(
         const { dateRange, spotId, userId, bookingId } = req.body;
 
         const bookingToUpdate = await Booking.findOne({
-            where: { bookingId },
+            where: { id: bookingId },
             include: [{ all: true, nested: true }],
         })
 
@@ -86,7 +86,7 @@ router.delete(
         const { dateRange, spotId, userId, bookingId } = req.body;
 
         const bookingToDelete = await Booking.findOne({
-            where: { bookingId },
+            where: { id: bookingId },
             include: [{ all: true, nested: true }],
         })
 
