@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookings } from "../../store/bookings";
 
 import { parseDate } from "../../utils";
+import EditBookingsForm from "../EditBookingsForm";
 
 import './BookingsPage.css'
 
@@ -15,11 +16,24 @@ const BookingsPage = () => {
 
     const bookings = useSelector(state => state.bookingsState.entries)
 
+    const [showEditBookingsForm, setShowEditBookingsForm] = useState(null)
+    const [spotIdToEdit, setSpotIdToEdit] = useState(null)
+    const [deleteBooking, setDeleteBooking] = useState(null)
+
+    const toggleEdit = (bookingId, spotId) => {
+        setShowEditBookingsForm(bookingId)
+        setSpotIdToEdit(spotId)
+    }
+
+    const toggleConfirmDelete = (bookingId, spotId) => {
+
+    }
 
 
     return (
         <div className="bookings-page">
             <h2 className="bookings-page__header">View your bookings</h2>
+            <EditBookingsForm showEditBookingsForm={showEditBookingsForm} setShowEditBookingsForm={setShowEditBookingsForm} spotId={spotIdToEdit}/>
             <div className="bookings-page__bookings">
                 {bookings.map((booking, index) => {
 
@@ -41,10 +55,10 @@ const BookingsPage = () => {
                                     {booking.Spot.description}
                                 </p>
                             </div>
-                            <button className="bookings-page__button bookings-page__button--edit">
+                            <button onClick={() => toggleEdit(booking.id, booking.Spot.id)} className="bookings-page__button bookings-page__button--edit">
                                 Edit
                             </button>
-                            <button className="bookings-page__button bookings-page__button--delete">
+                            <button onClick={() => toggleConfirmDelete(booking.id, booking.Spot.id)} className="bookings-page__button bookings-page__button--delete">
                                 Delete
                             </button>
                         </div>

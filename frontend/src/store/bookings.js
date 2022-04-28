@@ -86,7 +86,6 @@ const initialState = {
 const bookingsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_BOOKINGS: {
-            console.log(action)
             return {...state, entries: [...action.payload ] }
         }
         case ADD_BOOKING: {

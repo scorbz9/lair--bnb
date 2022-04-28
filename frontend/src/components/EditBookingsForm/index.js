@@ -3,21 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Calendar from 'react-calendar';
 
-import { createBooking } from '../../store/bookings';
+import { editBooking } from '../../store/bookings';
 
-import './BookingsForm.css'
+import './EditBookingsForm.css'
 import 'react-calendar/dist/Calendar.css';
 
-const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
+const EditBookingsForm = ({ showEditBookingsForm, setShowEditBookingsForm, spotId }) => {
     const dispatch = useDispatch();
-    const spot = useSelector(state => state.spotsState.entries)
-        .find(spot => spot.id === showBookingsForm)
 
-    const [dateRange, setDateRange] = useState(null);
+    const booking = useSelector(state => state.bookingsState.entries)
+        .find(booking => booking.id === showEditBookingsForm)
+
+    const spotBookings = useSelector(state => state.bookingsState.entries)
+        .filter(booking => booking.Spot.id === spotId)
+
+    const [dateRange, setDateRange] = useState([booking?.startDate, booking?.endDate]);
     const [errors, setErrors] = useState([])
 
     const handleCancel = () => {
-        setShowBookingsForm(null)
+        setShowEditBookingsForm(null)
         setDateRange(null)
         setErrors([])
     }
@@ -28,11 +32,10 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
 
         const payload = {
             dateRange,
-            spotId: showBookingsForm,
-            userId
+            bookingId: showEditBookingsForm,
         }
 
-        await dispatch(createBooking(payload))
+        await dispatch(editBooking(payload))
             .catch(async (res) => {
                 const data = await res.json()
                 if (data.errors) setErrors(data.errors)
@@ -49,8 +52,8 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
         }
 
         // Check each date tile to see if it is within a date range that is already booked
-        for (let i = 0; i < spot.Bookings.length; i++) {
-            let booking = spot.Bookings[i];
+        for (let i = 0; i < spotBookings.length; i++) {
+            let booking = spotBookings[i];
             if (new Date(booking.startDate).getTime() <= date.date.getTime() && new Date(booking.endDate) >= date.date.getTime()) {
                 return true;
             }
@@ -59,11 +62,11 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
     }
 
     return (
-        showBookingsForm ?
+        showEditBookingsForm ?
         <div className="overlay-wrapper">
             <div className="bookings-form-container">
                 <h2>
-                    Make a reservation for: {spot.address}
+                    Edit your reservation for: {booking.Spot.address}
                 </h2>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="bookings-form__calendar-input">
@@ -87,4 +90,4 @@ const BookingsForm = ({ showBookingsForm, setShowBookingsForm, userId }) => {
     )
 }
 
-export default BookingsForm;
+export default EditBookingsForm;
