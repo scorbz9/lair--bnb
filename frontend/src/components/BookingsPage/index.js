@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBookings } from "../../store/bookings";
+import { deleteBooking, getBookings } from "../../store/bookings";
 
 import { parseDate } from "../../utils";
+import ConfirmDelete from "../ConfirmDelete";
 import EditBookingsForm from "../EditBookingsForm";
 
 import './BookingsPage.css'
@@ -18,15 +19,21 @@ const BookingsPage = () => {
 
     const [showEditBookingsForm, setShowEditBookingsForm] = useState(null)
     const [spotIdToEdit, setSpotIdToEdit] = useState(null)
-    const [deleteBooking, setDeleteBooking] = useState(null)
+
+    const [showConfirmDelete, setShowConfirmDelete] = useState(null)
 
     const toggleEdit = (bookingId, spotId) => {
         setShowEditBookingsForm(bookingId)
         setSpotIdToEdit(spotId)
     }
 
-    const toggleConfirmDelete = (bookingId, spotId) => {
+    const toggleConfirmDelete = (bookingId) => {
+        setShowConfirmDelete(bookingId)
+    }
 
+    const handleDelete = (bookingId) => {
+        dispatch(deleteBooking({ bookingId }))
+        setShowConfirmDelete(null)
     }
 
 
@@ -34,6 +41,7 @@ const BookingsPage = () => {
         <div className="bookings-page">
             <h2 className="bookings-page__header">View your bookings</h2>
             <EditBookingsForm showEditBookingsForm={showEditBookingsForm} setShowEditBookingsForm={setShowEditBookingsForm} spotId={spotIdToEdit}/>
+            <ConfirmDelete type="Booking" showConfirmDelete={showConfirmDelete} setShowConfirmDelete={setShowConfirmDelete} handleDelete={handleDelete}/>
             <div className="bookings-page__bookings">
                 {bookings.map((booking, index) => {
 
