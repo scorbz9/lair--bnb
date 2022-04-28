@@ -1,13 +1,63 @@
 .bookings-page {
     margin: 80px auto;
     width: 80vw;
-    max-width: 62.5em;
+    max-width: 53.625em;
+}
+
+.bookings-page__booking {
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+    height: 220px;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .bookings-page__spot-image {
-    display: inline;
+    height: 12.5em;
+    width: 12.5em;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+.bookings-page__booking-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .bookings-page__spot-address {
-    display: inline;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.bookings-page__booking-date-range {
+    font-size: 18px;
+    margin: 10px;
+}
+
+.bookings-page__spot-description {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.bookings-page__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: grey;
+    text-align: left;
+    font-size: 16px;
+}
+
+.bookings-page__button:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+.bookings-page__button--delete {
+    margin-top: 25px;
 }
