@@ -91,6 +91,11 @@
     cursor: pointer;
 }
 
+.spot-bookings-link:hover {
+    color: red;
+    text-decoration: underline;
+}
+
 .spot-amenity-preview {
     display: flex;
     flex-direction: row;

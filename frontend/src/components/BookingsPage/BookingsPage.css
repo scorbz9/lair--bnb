@@ -1,7 +1,8 @@
 .bookings-page {
-    margin: 80px auto;
+    margin: 80px auto 0 auto;
     width: 80vw;
     max-width: 53.625em;
+    height: 100vh;
 }
 
 .bookings-page__booking {
@@ -60,4 +61,8 @@
 
 .bookings-page__button--delete {
     margin-top: 25px;
+}
+
+.bookings-page__no-bookings {
+    font-size: 20px;
 }

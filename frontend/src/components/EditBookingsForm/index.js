@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import Calendar from 'react-calendar';
+import { Collapse } from 'react-collapse';
 
 import { editBooking } from '../../store/bookings';
 
@@ -10,6 +12,7 @@ import 'react-calendar/dist/Calendar.css';
 
 const EditBookingsForm = ({ showEditBookingsForm, setShowEditBookingsForm, spotId }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const booking = useSelector(state => state.bookingsState.entries)
         .find(booking => booking.id === showEditBookingsForm)
@@ -18,12 +21,14 @@ const EditBookingsForm = ({ showEditBookingsForm, setShowEditBookingsForm, spotI
         .filter(booking => booking.Spot.id === spotId)
 
     const [dateRange, setDateRange] = useState([booking?.startDate, booking?.endDate]);
+    const [isOpened, setIsOpened] = useState(false)
     const [errors, setErrors] = useState([])
 
     const handleCancel = () => {
         setShowEditBookingsForm(null)
         setDateRange(null)
         setErrors([])
+        setIsOpened(false)
     }
 
     const handleSubmit = async (e) => {
@@ -36,6 +41,12 @@ const EditBookingsForm = ({ showEditBookingsForm, setShowEditBookingsForm, spotI
         }
 
         await dispatch(editBooking(payload))
+            .then(async () => {
+                setShowEditBookingsForm(null)
+                setDateRange(null)
+                setErrors([])
+                setIsOpened(false)
+            })
             .catch(async (res) => {
                 const data = await res.json()
                 if (data.errors) setErrors(data.errors)
@@ -61,29 +72,40 @@ const EditBookingsForm = ({ showEditBookingsForm, setShowEditBookingsForm, spotI
         return false;
     }
 
+    const toggleCalendar = (e) => {
+        e.preventDefault();
+
+        setIsOpened(!isOpened)
+    }
+
     return (
         showEditBookingsForm ?
         <div className="overlay-wrapper">
             <div className="bookings-form-container">
-                <h2>
-                    Edit your reservation for: {booking.Spot.address}
-                </h2>
+            <h2 className="bookings-form__header">
+                            Edit your reservation for: <strong className="bookings-form__address">{booking.Spot.address}</strong>
+                        </h2>
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="bookings-form__calendar-input">
-                        {errors.map((error, index) => {
-                            return <div key={index}>{error}</div>
-                        })}
-                    </label>
-                    <Calendar
-                        value={dateRange}
-                        onChange={setDateRange}
-                        minDetail={"year"}
-                        selectRange={true}
-                        tileDisabled={handleAlreadyBooked}
-                        id="bookings-form__calendar-input"
-                    />
-                    <button type="submit" className="bookings-form-submit">Reserve</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <Collapse isOpened={isOpened}>
+                        <label htmlFor="bookings-form__calendar-input">
+                            {errors.map((error, index) => {
+                                return <div key={index}>{error}</div>
+                            })}
+                        </label>
+                        <Calendar
+                            value={dateRange}
+                            onChange={setDateRange}
+                            minDetail={"year"}
+                            selectRange={true}
+                            tileDisabled={handleAlreadyBooked}
+                            id="bookings-form__calendar-input"
+                        />
+                    </Collapse>
+                    {isOpened ?
+                        <button type="submit" className="bookings-form-submit">Reserve</button>
+                        : <button onClick={toggleCalendar} className="bookings-form-submit">Make a Reservation</button>
+                        }
+                    <button className="bookings-form__cancel" onClick={handleCancel}>Cancel</button>
                 </form>
             </div>
         </div> : <></>
