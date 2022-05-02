@@ -97,7 +97,7 @@ function SpotsPage({ allSpots }) {
                                     </div>
                                 </div>
 
-                                    <p onClick={() => toggleBookingsForm(spot.id)} className="spot-bookings-link">Book this Spot</p>
+                                    <p onClick={() => toggleBookingsForm(spot.id)} className="spot-bookings-link">Make a reservation</p>
 
                             {sessionUser?.id === spot.userId ?
                                 <div className="edit-and-delete">

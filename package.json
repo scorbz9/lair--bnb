@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/scorbz9/lair--bnb/issues"
   },
-  "homepage": "https://github.com/scorbz9/lair--bnb#readme"
+  "homepage": "https://github.com/scorbz9/lair--bnb#readme",
+  "dependencies": {
+    "react-collapse": "^5.1.1"
+  }
 }

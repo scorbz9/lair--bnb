@@ -1,9 +1,9 @@
 .bookings-form-container {
-    padding: 10px;
+    padding: 20px;
     border-radius: 9px;
-    background-color: rgb(197, 195, 195);
+    background-color: #777575;
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     left: 0;
     right: 0;
     top: 0;
@@ -13,8 +13,29 @@
     height: max-content;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
+.bookings-form-container form {
+    width: 100%;
+}
+
+.bookings-form__inner-container {
+    border: 1px solid #88404d;
+    padding: 20px 20px 10px 20px;
+    border-radius: 4px;
+}
+
+.bookings-form__header {
+    font-size: 30px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.bookings-form__address {
+    display: block;
+    margin: 10px 0;
+}
 
 .bookings-form-submit {
     margin: 10px 0;
@@ -30,4 +51,22 @@
 
 .bookings-form-submit:hover {
     background-color: #aa5061;
+}
+
+.bookings-form__cancel {
+    background: none;
+    letter-spacing: 1.5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.bookings-form__cancel:hover {
+    text-decoration: underline;
+}
+
+.ReactCollapse--collapse {
+    transition: height 600ms;
 }
