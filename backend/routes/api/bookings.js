@@ -12,7 +12,7 @@ router.get(
         const bookings = await Booking.findAll({
             include: [{ all: true, nested: true }],
             order: [
-                ['createdAt', 'ASC'],
+                ['createdAt', 'DESC'],
             ]
         })
 
