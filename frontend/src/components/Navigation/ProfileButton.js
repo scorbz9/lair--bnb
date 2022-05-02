@@ -45,6 +45,9 @@ function ProfileButton({ user }) {
             <div>
               <NavLink id="view-your-spots-button" className="profile-dropdown-button" to={`/users/${user.id}/spots`}>View your spots</NavLink>
             </div>
+            <div>
+              <NavLink id="view-your-bookings-button" className="profile-dropdown-button" to={`/bookings`}>View your bookings</NavLink>
+            </div>
 
               <button onClick={logout} className="profile-dropdown-button" id="profile-dropdown-logout">Log Out</button>
 
